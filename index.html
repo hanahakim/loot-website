@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loot — Your campus. Your marketplace.</title>
+<meta name="description" content="A verified student-to-student marketplace for Ontario universities. Buy, sell, rent — on campus. .ca emails only.">
+<meta property="og:title" content="Loot — Your campus. Your marketplace.">
+<meta property="og:description" content="The campus marketplace built for Canadian university students. Verified students. Zero strangers.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* ─── Tokens ───────────────────────────────────────────── */
+  :root {
+    --blue: #0f5c8a;
+    --blue-deep: #062c47;
+    --gold: #f0a500;
+    --gold-soft: #ffd76b;
+    --ink: #0a0a0a;
+    --paper: #faf5ea;
+    --paper-2: #f3ebd6;
+    --line: #0a0a0a;
+  }
+
+  /* ─── Reset ─────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  button, input { font: inherit; color: inherit; }
+
+  .syne { font-family: 'Syne', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+  /* ─── Nav ────────────────────────────────────────────────── */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--paper);
+    border-bottom: 2px solid var(--ink);
+  }
+  .nav-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 28px; letter-spacing: -0.04em;
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--ink);
+  }
+  .logo .dot {
+    width: 14px; height: 14px; background: var(--gold);
+    border: 2px solid var(--ink);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .nav-links {
+    display: flex; gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 15px; font-weight: 500; color: var(--ink);
+    position: relative;
+    transition: color .15s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-links a:hover::after {
+    content: ""; position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 3px; background: var(--gold);
+  }
+  .cta-pill {
+    background: var(--ink); color: var(--paper);
+    padding: 12px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 14px;
+    border: 2px solid var(--ink);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .cta-pill:hover { background: var(--gold); color: var(--ink); transform: translateY(-1px); }
+  .cta-pill .arr { transition: transform .2s ease; }
+  .cta-pill:hover .arr { transform: translateX(3px); }
+
+  .hamburger {
+    display: none;
+    background: none; border: 2px solid var(--ink);
+    width: 44px; height: 44px; border-radius: 8px;
+    cursor: pointer;
+    flex-direction: column; gap: 5px; align-items: center; justify-content: center;
+  }
+  .hamburger span { width: 20px; height: 2px; background: var(--ink); display: block; }
+
+  .mobile-menu {
+    display: none;
+    border-bottom: 2px solid var(--ink);
+    background: var(--paper);
+    padding: 12px 28px 24px;
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(10,10,10,.1);
+    font-weight: 500; font-size: 18px;
+    color: var(--ink);
+    transition: color .15s;
+  }
+  .mobile-menu a:hover { color: var(--blue); }
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  /* ─── Hero ───────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    padding: 80px 0 60px;
+    overflow: hidden;
+  }
+  /* Concentric ring decoration — top right */
+  .hero::before {
+    content: "";
+    position: absolute;
+    right: -260px; top: -80px;
+    width: 720px; height: 720px;
+    background:
+      radial-gradient(circle at center,
+        transparent 0,
+        transparent 120px, var(--paper-2) 120px, var(--paper-2) 140px,
+        transparent 140px, transparent 200px, var(--paper-2) 200px, var(--paper-2) 220px,
+        transparent 220px, transparent 290px, var(--paper-2) 290px, var(--paper-2) 310px,
+        transparent 310px);
+    pointer-events: none; z-index: 0;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    background: var(--paper); border: 2px solid var(--ink);
+    padding: 8px 16px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 36px;
+  }
+  .eyebrow .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold);
+    animation: pulse-anim 2s infinite;
+  }
+  @keyframes pulse-anim {
+    0%,100% { box-shadow: 0 0 0 0 rgba(240,165,0,.7); }
+    50% { box-shadow: 0 0 0 10px rgba(240,165,0,0); }
+  }
+
+  h1.hero-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(64px, 11vw, 168px);
+    line-height: 0.88; letter-spacing: -0.04em;
+    margin-bottom: 32px;
+  }
+  h1.hero-title .row1 { display: block; }
+  h1.hero-title .row2 {
+    display: block;
+    -webkit-text-stroke: 2px var(--ink);
+    color: transparent;
+  }
+  h1.hero-title .row3 { display: inline-block; }
+
+  .loot-sticker {
+    display: inline-block;
+    background: var(--gold); color: var(--ink);
+    padding: 0.05em 0.18em 0.08em;
+    border: 4px solid var(--ink);
+    transform: rotate(-3deg);
+    box-shadow: 8px 8px 0 var(--ink);
+    margin-left: 0.05em;
+    position: relative;
+  }
+  .loot-sticker::after {
+    content: "";
+    position: absolute; top: -14px; right: 20px;
+    width: 70px; height: 18px;
+    background: rgba(15,92,138,.35);
+    transform: rotate(8deg);
+    border: 1px dashed rgba(10,10,10,.4);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px; align-items: end;
+  }
+  .hero-sub {
+    font-size: 20px; line-height: 1.5;
+    max-width: 520px; color: rgba(10,10,10,.75);
+    margin-bottom: 36px;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+
+  /* ─── Waitlist form ──────────────────────────────────────── */
+  .waitlist {
+    display: flex; align-items: center;
+    background: #fff; border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 6px 6px 6px 24px; max-width: 520px;
+    transition: box-shadow .2s ease, transform .15s ease;
+  }
+  .waitlist:focus-within {
+    box-shadow: 0 0 0 4px var(--gold);
+    transform: translateY(-1px);
+  }
+  .waitlist input {
+    flex: 1; border: none; outline: none;
+    font-size: 16px; background: transparent; color: var(--ink);
+    padding: 14px 8px;
+  }
+  .waitlist input::placeholder { color: rgba(10,10,10,.4); }
+  .waitlist button {
+    background: var(--ink); color: var(--paper);
+    border: none; border-radius: 999px;
+    padding: 14px 24px;
+    font-weight: 600; font-size: 15px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    white-space: nowrap;
+    transition: background .15s ease, color .15s ease;
+  }
+  .waitlist button:hover { background: var(--gold); color: var(--ink); }
+
+  .waitlist-meta {
+    margin-top: 14px; font-size: 13px; color: rgba(10,10,10,.55);
+    display: flex; align-items: center; gap: 10px;
+    padding-left: 4px; min-height: 24px;
+  }
+  .waitlist-meta.error { color: #c0392b; }
+  .waitlist-meta.success { color: #15803d; }
+  .waitlist-meta .checks { display: flex; gap: 12px; flex-wrap: wrap; }
+  .waitlist-meta .checks span {
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .waitlist-meta .checks svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+  /* ─── Hero side stat cards ───────────────────────────────── */
+  .hero-side {
+    display: flex; flex-direction: column; gap: 18px;
+    padding-bottom: 8px;
+  }
+  .stat-card {
+    background: #fff; border: 2px solid var(--ink);
+    padding: 22px 24px; position: relative;
+  }
+  .stat-card.tilt-l { transform: rotate(-1.2deg); }
+  .stat-card.tilt-r { transform: rotate(1.5deg); }
+  .stat-card.blue { background: var(--blue); color: #fff; }
+  .stat-card .num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 48px; line-height: 1; letter-spacing: -0.03em;
+  }
+  .stat-card .lbl {
+    font-size: 13px; margin-top: 8px;
+    text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
+    color: rgba(10,10,10,.6);
+  }
+  .stat-card.blue .lbl { color: rgba(255,255,255,.7); }
+  .stat-card .corner-tag {
+    position: absolute; top: -10px; right: -10px;
+    background: var(--gold); border: 2px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    padding: 4px 8px; transform: rotate(6deg);
+    text-transform: uppercase; font-weight: 600;
+  }
+
+  /* ─── Marquee ────────────────────────────────────────────── */
+  .marquee {
+    background: var(--blue); color: #fff;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    overflow: hidden; padding: 22px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 56px;
+    white-space: nowrap; width: max-content;
+    animation: scroll-left 40s linear infinite;
+  }
+  .marquee-track span {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 28px; text-transform: uppercase; letter-spacing: -0.01em;
+    display: inline-flex; align-items: center; gap: 56px;
+  }
+  .marquee-track span::after { content: "✦"; color: var(--gold); font-size: 24px; }
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── Section base ───────────────────────────────────────── */
+  .section { padding: 120px 0; }
+  .section-head {
+    margin-bottom: 56px;
+    display: flex; align-items: flex-end;
+    justify-content: space-between; gap: 40px; flex-wrap: wrap;
+  }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue);
+    margin-bottom: 16px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .kicker::before {
+    content: ""; display: inline-block;
+    width: 24px; height: 2px; background: var(--gold);
+  }
+  h2.section-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.95; letter-spacing: -0.03em;
+    max-width: 760px;
+  }
+  h2.section-title em {
+    font-style: normal;
+    background: var(--gold);
+    padding: 0 0.15em; color: var(--ink);
+  }
+  .section-lede {
+    max-width: 360px; font-size: 17px;
+    color: rgba(10,10,10,.7); line-height: 1.55;
+  }
+
+  /* ─── Features ───────────────────────────────────────────── */
+  .features-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .feature {
+    background: #fff; border: 2px solid var(--ink);
+    padding: 36px; position: relative;
+    transition: transform .25s ease, box-shadow .25s ease;
+    min-height: 320px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    overflow: hidden;
+  }
+  .feature:hover {
+    transform: translate(-4px, -6px) rotate(-1deg);
+    box-shadow: 12px 14px 0 var(--ink);
+  }
+  .feature .num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 96px; line-height: 1;
+    color: var(--ink); -webkit-text-stroke: 2px var(--ink);
+    letter-spacing: -0.04em;
+  }
+  .feature.gold { background: var(--gold); }
+  .feature.gold .num { color: var(--ink); }
+  .feature.blue { background: var(--blue); color: #fff; }
+  .feature.blue .num { color: #fff; -webkit-text-stroke: 2px #fff; }
+  .feature.dark { background: var(--ink); color: var(--paper); }
+  .feature.dark .num { color: var(--gold); -webkit-text-stroke: 2px var(--gold); }
+  .feature h3 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 30px; line-height: 1.05; letter-spacing: -0.02em;
+    margin-top: 24px; margin-bottom: 12px;
+  }
+  .feature p { font-size: 15px; line-height: 1.55; opacity: 0.78; max-width: 320px; }
+  .feature .corner-mark {
+    position: absolute; top: 18px; right: 22px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6;
+  }
+
+  /* ─── How it works ───────────────────────────────────────── */
+  .how {
+    background: var(--paper-2);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border: 2px solid var(--ink);
+    background: var(--ink); /* gap color */
+    gap: 2px;
+  }
+  .step {
+    background: var(--paper);
+    padding: 48px 36px;
+    position: relative;
+  }
+  .step .big-num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(80px, 12vw, 160px);
+    line-height: 0.9; letter-spacing: -0.05em;
+    color: var(--ink); margin-bottom: 16px;
+  }
+  .step:nth-child(2) .big-num { color: var(--blue); }
+  .step:nth-child(3) .big-num {
+    -webkit-text-stroke: 3px var(--ink);
+    color: var(--gold);
+  }
+  .step h4 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 26px; letter-spacing: -0.02em; margin-bottom: 12px;
+  }
+  .step p { font-size: 15px; color: rgba(10,10,10,.7); line-height: 1.55; max-width: 320px; }
+  .step .tag {
+    position: absolute; top: 24px; right: 28px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(10,10,10,.45);
+  }
+
+  /* ─── CTA ────────────────────────────────────────────────── */
+  .cta-section {
+    background: var(--blue-deep); color: #fff;
+    padding: 140px 0 120px;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: "";
+    position: absolute; left: -200px; bottom: -200px;
+    width: 600px; height: 600px;
+    background: var(--gold); border-radius: 50%;
+    opacity: 0.12; pointer-events: none;
+  }
+  .cta-section::after {
+    content: "LOOT";
+    position: absolute; right: -40px; top: -60px;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 320px; color: transparent;
+    -webkit-text-stroke: 2px rgba(240,165,0,.18);
+    letter-spacing: -0.04em; pointer-events: none; line-height: 1;
+  }
+  .cta-section .wrap { position: relative; z-index: 1; }
+  .cta-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 28px;
+  }
+  .cta-eyebrow::before {
+    content: ""; width: 8px; height: 8px;
+    background: var(--gold); transform: rotate(45deg); display: inline-block;
+  }
+  .cta-section h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(48px, 8vw, 110px);
+    line-height: 0.95; letter-spacing: -0.03em;
+    margin-bottom: 32px; max-width: 900px;
+  }
+  .cta-section h2 .strike {
+    text-decoration: line-through;
+    text-decoration-thickness: 6px;
+    text-decoration-color: var(--gold);
+    opacity: 0.5;
+  }
+  .cta-section h2 .gold-block {
+    background: var(--gold); color: var(--ink);
+    padding: 0 0.15em; display: inline-block;
+    transform: rotate(-1deg);
+  }
+  .cta-section p.cta-sub {
+    font-size: 19px; color: rgba(255,255,255,.7);
+    max-width: 580px; margin-bottom: 40px;
+  }
+  .cta-section .waitlist {
+    background: rgba(255,255,255,.06);
+    border-color: var(--gold);
+  }
+  .cta-section .waitlist:focus-within { box-shadow: 0 0 0 4px rgba(240,165,0,.35); }
+  .cta-section .waitlist input { color: #fff; }
+  .cta-section .waitlist input::placeholder { color: rgba(255,255,255,.45); }
+  .cta-section .waitlist button { background: var(--gold); color: var(--ink); }
+  .cta-section .waitlist button:hover { background: #fff; }
+  .cta-section .waitlist-meta { color: rgba(255,255,255,.55); }
+  .cta-section .waitlist-meta.success { color: var(--gold); }
+  .cta-section .waitlist-meta.error { color: #ffb4a8; }
+
+  /* ─── Footer ─────────────────────────────────────────────── */
+  footer {
+    background: var(--ink); color: var(--paper);
+    padding: 72px 0 28px;
+  }
+  .foot-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px; padding-bottom: 56px;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+  .foot-grid h5 {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold);
+    margin-bottom: 18px; font-weight: 500;
+  }
+  .foot-grid ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .foot-grid a { color: rgba(255,255,255,.7); font-size: 15px; transition: color .15s; }
+  .foot-grid a:hover { color: var(--gold); }
+  .foot-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 56px; letter-spacing: -0.04em;
+    margin-bottom: 16px; line-height: 1;
+  }
+  .foot-tag { color: rgba(255,255,255,.55); font-size: 15px; max-width: 320px; }
+  .foot-bottom {
+    padding-top: 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: rgba(255,255,255,.45);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  /* ─── Scroll reveal ──────────────────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.delay-1 { transition-delay: .08s; }
+  .reveal.delay-2 { transition-delay: .16s; }
+  .reveal.delay-3 { transition-delay: .24s; }
+  .reveal.delay-4 { transition-delay: .32s; }
+
+  /* ─── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .nav-links, .cta-pill { display: none; }
+    .hamburger { display: flex; }
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-side { flex-direction: row; gap: 14px; flex-wrap: wrap; }
+    .stat-card { flex: 1 1 calc(50% - 14px); }
+    .features-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; gap: 2px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .section { padding: 80px 0; }
+    .hero { padding: 48px 0 32px; }
+    .marquee-track span { font-size: 22px; }
+    h1.hero-title { font-size: clamp(56px, 14vw, 110px); }
+    .cta-section { padding: 90px 0 80px; }
+    .cta-section::after { font-size: 200px; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 20px; }
+    .nav-row { padding: 14px 20px; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .feature { padding: 28px; min-height: 280px; }
+    .feature .num { font-size: 72px; }
+    .stat-card { flex: 1 1 100%; }
+    .loot-sticker { box-shadow: 6px 6px 0 var(--ink); border-width: 3px; }
+    .marquee { padding: 16px 0; }
+    .marquee-track { gap: 36px; }
+    .marquee-track span { font-size: 18px; gap: 36px; }
+    .marquee-track span::after { font-size: 18px; }
+    .cta-section::after { display: none; }
+    h2.section-title { font-size: clamp(36px, 10vw, 56px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── Nav ──────────────────────────────────────────────────── -->
+<nav class="top" id="nav">
+  <div class="nav-row">
+    <a href="#" class="logo">
+      <span class="dot"></span>
+      Loot
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Why Loot</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#join">Schools</a></li>
+      <li><a href="#join">FAQ</a></li>
+    </ul>
+    <a href="#join" class="cta-pill">
+      Join waitlist <span class="arr">→</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features">Why Loot</a>
+    <a href="#how">How it works</a>
+    <a href="#join">Schools</a>
+    <a href="#join">FAQ</a>
+    <a href="#join">Join waitlist →</a>
+  </div>
+</nav>
+
+<!-- ─── Hero ─────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">
+      <span class="pulse"></span>
+      Launching Fall 2026 · 45+ Ontario campuses
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-title reveal">
+          <span class="row1">Buy.</span>
+          <span class="row2">Sell.</span>
+          <span class="row3"><span class="loot-sticker">Loot.</span></span>
+        </h1>
+
+        <p class="hero-sub reveal delay-1">
+          The campus marketplace built for Canadian university students.
+          <strong>.ca emails only.</strong> Verified students. Zero strangers.
+          Just textbooks, futons, and the cheap monitor you actually need.
+        </p>
+
+        <form class="waitlist reveal delay-2" id="waitlistForm" novalidate>
+          <input type="email" id="email" placeholder="you@uoft.ca" required aria-label="Your .ca email">
+          <button type="submit">Get early access <span>→</span></button>
+        </form>
+        <div class="waitlist-meta reveal delay-3" id="waitlistMeta">
+          <div class="checks">
+            <span>
+              <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              No spam
+            </span>
+            <span>
+              <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              .ca only
+            </span>
+            <span>
+              <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Free forever
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side reveal delay-3">
+        <div class="stat-card tilt-l">
+          <div class="corner-tag">verified</div>
+          <div class="num">.ca</div>
+          <div class="lbl">Emails only · no rando&nbsp;sellers</div>
+        </div>
+        <div class="stat-card blue tilt-r">
+          <div class="num">45+</div>
+          <div class="lbl">Ontario universities at launch</div>
+        </div>
+        <div class="stat-card tilt-l">
+          <div class="corner-tag">on campus</div>
+          <div class="num">0&nbsp;km</div>
+          <div class="lbl">Pickup in your residence hall, not Markham</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<!-- ─── Marquee ──────────────────────────────────────────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>45+ Ontario Universities</span>
+    <span>100% Verified Students</span>
+    <span>Zero Strangers</span>
+    <span>Textbooks</span>
+    <span>Furniture</span>
+    <span>Electronics</span>
+    <span>Bikes</span>
+    <span>Dorm Decor</span>
+    <span>45+ Ontario Universities</span>
+    <span>100% Verified Students</span>
+    <span>Zero Strangers</span>
+    <span>Textbooks</span>
+    <span>Furniture</span>
+    <span>Electronics</span>
+    <span>Bikes</span>
+    <span>Dorm Decor</span>
+  </div>
+</div>
+
+<!-- ─── Features ─────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker reveal">Why Loot</div>
+        <h2 class="section-title reveal">Built for students. <em>Run by students.</em></h2>
+      </div>
+      <p class="section-lede reveal delay-1">
+        Kijiji is sketchy. Facebook Marketplace is your mom's friend. Loot is just your campus,
+        with people who actually live there.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <article class="feature reveal">
+        <div>
+          <div class="corner-mark">/ 01</div>
+          <div class="num">01</div>
+          <h3>Verified students. Always.</h3>
+        </div>
+        <p>Sign up with your .ca email. We confirm you're real, currently enrolled, and from the campus you say you are. No catfish, no creeps.</p>
+      </article>
+
+      <article class="feature gold reveal delay-1">
+        <div>
+          <div class="corner-mark">/ 02</div>
+          <div class="num">02</div>
+          <h3>Pickup happens on campus.</h3>
+        </div>
+        <p>Meet at the library, the dining hall, the quad. You never have to take a 40-minute GO train to buy a $25 lamp from a stranger.</p>
+      </article>
+
+      <article class="feature blue reveal delay-2">
+        <div>
+          <div class="corner-mark">/ 03</div>
+          <div class="num">03</div>
+          <h3>Built for end-of-term chaos.</h3>
+        </div>
+        <p>Move-out auctions, term-by-term filters, and "leaving Friday" tags so you can find the kid panic-selling a futon for $40.</p>
+      </article>
+
+      <article class="feature dark reveal delay-3">
+        <div>
+          <div class="corner-mark">/ 04</div>
+          <div class="num">04</div>
+          <h3>Zero fees. Forever.</h3>
+        </div>
+        <p>No commission, no listing fees, no "pro" tier. We're not trying to skim your beer money. Students keep 100% of every sale.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── How it works ─────────────────────────────────────────── -->
+<section class="how section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker reveal">How it works</div>
+        <h2 class="section-title reveal">Three steps, <em>zero strangers.</em></h2>
+      </div>
+      <p class="section-lede reveal delay-1">
+        From signup to selling a slightly stained beanbag — under 5 minutes, start to finish.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="tag">// step</div>
+        <div class="big-num">01</div>
+        <h4>Verify with your .ca email.</h4>
+        <p>One click. We match your domain to your school. You're in — no ID upload, no awkward selfie.</p>
+      </div>
+      <div class="step reveal delay-1">
+        <div class="tag">// step</div>
+        <div class="big-num">02</div>
+        <h4>List it or loot it.</h4>
+        <p>Snap a photo, set a price, drop it on your campus feed. Or browse what's leaving the dorms next week.</p>
+      </div>
+      <div class="step reveal delay-2">
+        <div class="tag">// step</div>
+        <div class="big-num">03</div>
+        <h4>Meet, swap, score.</h4>
+        <p>DM the seller, pick a spot on campus, pay any way you want. Loot doesn't touch the money.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ───────────────────────────────────────────────────── -->
+<section class="cta-section" id="join">
+  <div class="wrap">
+    <div class="cta-eyebrow">Launching Fall 2026</div>
+    <h2 class="reveal">
+      Stop scrolling <span class="strike">Marketplace.</span><br>
+      Start <span class="gold-block">looting.</span>
+    </h2>
+    <p class="cta-sub reveal delay-1">
+      We're rolling out campus by campus, starting at McMaster. First 100 sign-ups per school
+      get a permanent "Founder" badge and first pick of the move-out drops in May.
+    </p>
+    <form class="waitlist reveal delay-2" id="waitlistForm2" novalidate>
+      <input type="email" id="email2" placeholder="you@mcmaster.ca" required aria-label="Your .ca email">
+      <button type="submit">Claim my spot <span>→</span></button>
+    </form>
+    <div class="waitlist-meta reveal delay-3" id="waitlistMeta2">
+      <div class="checks">
+        <span>
+          <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Founder badge
+        </span>
+        <span>
+          <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Early move-out access
+        </span>
+        <span>
+          <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Refer your friends
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Loot<span style="color: var(--gold);">.</span></div>
+        <p class="foot-tag">Your campus. Your marketplace. Built in Toronto, made for every .ca student in Canada.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#features">Why Loot</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#join">Schools</a></li>
+          <li><a href="#join">Waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#join">About</a></li>
+          <li><a href="#join">Press</a></li>
+          <li><a href="#join">Careers</a></li>
+          <li><a href="mailto:support@loot.ca">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Community rules</a></li>
+          <li><a href="#">Trust &amp; safety</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Loot Marketplace Inc. · Toronto, ON</div>
+      <div>Made by students, for students</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── Hamburger menu
+  const ham = document.getElementById('hamburger');
+  const mm = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    const open = mm.classList.toggle('open');
+    ham.setAttribute('aria-expanded', String(open));
+  });
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  // ─── Scroll reveal
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // ─── Email form — .ca validation
+  function wireForm(formId, metaId) {
+    const form = document.getElementById(formId);
+    const meta = document.getElementById(metaId);
+    if (!form || !meta) return;
+    const input = form.querySelector('input[type=email]');
+
+    function showState(state, msg) {
+      meta.className = 'waitlist-meta reveal in ' + state;
+      if (msg) {
+        const icon = state === 'success' ? '✓ ' : state === 'error' ? '⚠ ' : '';
+        meta.innerHTML = '<div class="checks"><span>' + icon + msg + '</span></div>';
+      }
+    }
+
+    function resetState() {
+      meta.className = 'waitlist-meta reveal in';
+      meta.innerHTML = `
+        <div class="checks">
+          <span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>No spam</span>
+          <span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>.ca only</span>
+          <span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free forever</span>
+        </div>`;
+    }
+
+    input.addEventListener('input', () => {
+      if (meta.classList.contains('error')) resetState();
+    });
+
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const v = (input.value || '').trim();
+      if (!v) {
+        showState('error', 'Drop your campus email to join the waitlist.');
+        input.focus(); return;
+      }
+      const isCA = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.ca$/i.test(v);
+      if (!isCA) {
+        showState('error', 'Loot is .ca-only — use your campus email (e.g. you@mcmaster.ca).');
+        input.focus(); return;
+      }
+      showState('success', "You're on the list. We'll ping you when your campus goes live.");
+      input.value = '';
+      input.blur();
+    });
+  }
+
+  wireForm('waitlistForm', 'waitlistMeta');
+  wireForm('waitlistForm2', 'waitlistMeta2');
+</script>
+</body>
+</html>
