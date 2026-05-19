@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How It Works — Loot</title>
+<meta name="description" content="How Loot works: verify your .ca email, browse or post listings, meet on campus. Safe, simple, student-to-student.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .steps-full {
+    display: grid; gap: 0;
+    border: 2px solid var(--ink);
+    background: var(--ink);
+  }
+  .step-full {
+    background: var(--paper); padding: 64px 56px;
+    display: grid; grid-template-columns: 200px 1fr; gap: 56px; align-items: start;
+    border-bottom: 2px solid var(--ink);
+  }
+  .step-full:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(100px, 14vw, 180px); line-height: 0.85; letter-spacing: -0.05em;
+    color: var(--ink);
+  }
+  .step-full:nth-child(2) .step-num { color: var(--blue); }
+  .step-full:nth-child(3) .step-num { -webkit-text-stroke: 3px var(--ink); color: var(--gold); }
+  .step-full:nth-child(4) .step-num { color: var(--ink); -webkit-text-stroke: 3px var(--ink); }
+  .step-content { padding-top: 12px; }
+  .step-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-mute);
+    margin-bottom: 16px;
+  }
+  .step-content h3 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.03em; line-height: 1;
+    margin-bottom: 20px;
+  }
+  .step-content p { font-size: 17px; color: var(--ink-soft); line-height: 1.65; max-width: 600px; }
+  .step-content p + p { margin-top: 14px; }
+  .step-detail {
+    margin-top: 28px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .detail-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--paper-2); border: 2px solid var(--ink); padding: 16px 20px;
+  }
+  .detail-icon {
+    width: 32px; height: 32px; border-radius: 0;
+    background: var(--gold); border: 2px solid var(--ink);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 14px;
+  }
+  .detail-item strong { font-weight: 600; font-size: 15px; display: block; margin-bottom: 2px; }
+  .detail-item p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+  /* CTA strip */
+  .cta-strip {
+    background: var(--blue-deep); color: #fff;
+    padding: 80px 0; text-align: center;
+    border-top: 2px solid var(--ink);
+  }
+  .cta-strip h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+  .cta-strip h2 span { color: var(--gold); }
+  .cta-strip .waitlist { max-width: 480px; margin: 0 auto; }
+  .cta-strip .waitlist input { color: #fff; }
+  .cta-strip .waitlist input::placeholder { color: rgba(255,255,255,.45); }
+  .cta-strip .waitlist { background: rgba(255,255,255,.07); border-color: var(--gold); }
+  .cta-strip .waitlist:focus-within { box-shadow: 0 0 0 4px rgba(240,165,0,.35); }
+  .cta-strip .waitlist button { background: var(--gold); color: var(--ink); }
+  .cta-strip .waitlist button:hover { background: #fff; }
+  .cta-strip .form-note { color: rgba(255,255,255,.45); text-align: center; }
+  .cta-strip .form-note.success { color: var(--gold); }
+  .cta-strip .form-note.error { color: #ffb4a8; }
+
+  @media (max-width: 760px) {
+    .step-full { grid-template-columns: 1fr; gap: 16px; padding: 40px 28px; }
+    .step-num { font-size: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-row">
+    <a href="/" class="logo"><span class="dot"></span>Loot</a>
+    <ul class="nav-links">
+      <li><a href="how-it-works.html" class="active">How it works</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="trust.html">Trust & Safety</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="/#join" class="cta-pill">Join waitlist <span class="arr">→</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-it-works.html">How it works</a>
+    <a href="schools.html">Schools</a>
+    <a href="about.html">About</a>
+    <a href="trust.html">Trust & Safety</a>
+    <a href="faq.html">FAQ</a>
+    <a href="/#join">Join waitlist →</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="kicker reveal">How it works</div>
+    <h1 class="reveal">Four steps.<br><em>Zero strangers.</em></h1>
+    <p class="reveal d1">From signup to selling your old ECON textbook — under five minutes, start to finish. No payment fees, no middleman, no shipping.</p>
+  </div>
+</div>
+
+<!-- Steps -->
+<div class="wrap" style="padding: 80px 28px;">
+  <div class="steps-full">
+
+    <div class="step-full reveal">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <div class="step-tag">// Verification</div>
+        <h3>Sign up with your .ca email.</h3>
+        <p>Every Loot user is verified through their university or college email address. We match your domain against a whitelist of 45+ Ontario institutions — if you're a real student, you're in.</p>
+        <p>No ID uploads. No awkward selfies. No waiting 24 hours for approval. One email, one click, you're verified for your entire degree.</p>
+        <div class="step-detail">
+          <div class="detail-item">
+            <div class="detail-icon">✓</div>
+            <div>
+              <strong>45+ Ontario institutions supported</strong>
+              <p>McMaster, UofT, Western, Queen's, Waterloo, Ryerson, York and more at launch.</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon">🔒</div>
+            <div>
+              <strong>Your email stays private</strong>
+              <p>Other users never see your email. They only see your first name and university.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-full reveal">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <div class="step-tag">// Listing</div>
+        <h3>Post a listing in 30 seconds.</h3>
+        <p>Tap Sell, snap a photo, add a price and a title. For textbooks, tag the course code (like "ECON 1B03") so buyers searching that course find it instantly. Choose to sell, rent, or trade.</p>
+        <p>Your listing goes live on your campus feed immediately — no review queue, no approval delay.</p>
+        <div class="step-detail">
+          <div class="detail-item">
+            <div class="detail-icon">📚</div>
+            <div>
+              <strong>Sell, rent, or trade</strong>
+              <p>Selling your futon? Renting your calculator for the semester? Looking to swap? Loot handles all three.</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon">#</div>
+            <div>
+              <strong>Course code tagging</strong>
+              <p>Tag any textbook with its course code. Buyers searching "CHEM 2OA3" find your listing at the top.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-full reveal">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <div class="step-tag">// Messaging</div>
+        <h3>Message the seller in the app.</h3>
+        <p>See something you want? Tap message. All conversations happen inside Loot — no swapping phone numbers with strangers, no Instagram DMs, no "text me at this number I definitely won't ghost you from."</p>
+        <p>Agree on a time and place — usually somewhere on campus like the library, MUSC, or your residence hall lobby.</p>
+        <div class="step-detail">
+          <div class="detail-item">
+            <div class="detail-icon">💬</div>
+            <div>
+              <strong>In-app messaging only</strong>
+              <p>Your personal contact info is never shared. All communication runs through Loot's secure chat.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-full reveal">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <div class="step-tag">// Exchange</div>
+        <h3>Meet on campus. Pay any way you want.</h3>
+        <p>Pick a spot, show up, hand it over. Pay by e-transfer, cash, Venmo, whatever works for both of you. Loot never touches the money — no payment processing, no holds, no 5% cut of your sale.</p>
+        <p>After the exchange, leave each other a rating. Ratings are how trust is built on Loot — sellers with good ratings sell faster, buyers with good ratings get first dibs.</p>
+        <div class="step-detail">
+          <div class="detail-item">
+            <div class="detail-icon">💰</div>
+            <div>
+              <strong>Zero fees. Always.</strong>
+              <p>You keep 100% of every sale. Loot doesn't take a commission now, or ever.</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon">★</div>
+            <div>
+              <strong>Ratings build trust</strong>
+              <p>Both parties rate each other after every transaction. Flakes get flagged fast.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="wrap">
+    <h2>Ready to <span>start looting?</span></h2>
+    <form class="waitlist" id="ctaForm" novalidate style="margin-bottom: 14px;">
+      <input type="email" placeholder="you@mcmaster.ca" aria-label="Your .ca email">
+      <button type="submit">Join waitlist →</button>
+    </form>
+    <div class="form-note" id="ctaNote">.ca emails only · No spam · Free forever</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Loot<span style="color:var(--gold);">.</span></div>
+        <p class="foot-tag">Your campus. Your marketplace. Built for every .ca student in Canada.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="schools.html">Schools</a></li>
+          <li><a href="/#join">Waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="trust.html">Trust & Safety</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="mailto:support@lootapp.ca">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Loot Marketplace Inc. · Toronto, ON</div>
+      <div>Made by students, for students</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+  wireForm('ctaForm', 'ctaNote');
+</script>
+</body>
+</html>

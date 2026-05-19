@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Loot</title>
+<meta name="description" content="Why we built Loot: the Canadian student marketplace gap, McMaster origin story, and the team behind it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .story-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    padding: 80px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  .story-grid h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.03em; line-height: 0.95;
+    margin-bottom: 32px;
+  }
+  .story-grid h2 em { font-style: normal; background: var(--gold); padding: 0 0.12em; }
+  .story-body p { font-size: 17px; color: var(--ink-soft); line-height: 1.7; }
+  .story-body p + p { margin-top: 18px; }
+  .story-body strong { color: var(--ink); font-weight: 600; }
+
+  .pull-quote {
+    background: var(--gold); border: 2px solid var(--ink); padding: 32px 36px;
+    margin: 32px 0; position: relative;
+  }
+  .pull-quote::before {
+    content: "\201C"; font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 120px; line-height: 0.8; color: var(--ink); opacity: 0.15;
+    position: absolute; top: 12px; left: 24px; pointer-events: none;
+  }
+  .pull-quote p {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px;
+    line-height: 1.3; letter-spacing: -0.02em; color: var(--ink);
+    position: relative; z-index: 1;
+  }
+  .pull-quote cite {
+    display: block; margin-top: 12px; font-size: 13px; font-style: normal;
+    font-family: 'JetBrains Mono', monospace; color: rgba(10,10,10,.65);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  .stats-strip {
+    background: var(--blue-deep); color: #fff;
+    border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+    padding: 64px 0;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border: 2px solid rgba(255,255,255,.15);
+  }
+  .stat-item {
+    padding: 40px 32px; border-right: 2px solid rgba(255,255,255,.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item .num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 64px; line-height: 1; letter-spacing: -0.04em; color: var(--gold);
+  }
+  .stat-item .lbl { font-size: 15px; color: rgba(255,255,255,.65); margin-top: 8px; }
+
+  .values { padding: 80px 0; border-bottom: 2px solid var(--ink); }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .value-card {
+    background: var(--white); border: 2px solid var(--ink); padding: 32px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .value-card:hover { transform: translate(-3px, -4px); box-shadow: 7px 7px 0 var(--ink); }
+  .value-card:nth-child(2) { background: var(--gold); }
+  .value-card:nth-child(3) { background: var(--blue); color: #fff; }
+  .value-num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 56px; letter-spacing: -0.04em; line-height: 1; margin-bottom: 16px;
+  }
+  .value-card h4 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 22px; letter-spacing: -0.02em; margin-bottom: 10px;
+  }
+  .value-card p { font-size: 15px; line-height: 1.6; opacity: 0.8; }
+
+  .contact-strip {
+    padding: 72px 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .contact-strip h3 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 40px; letter-spacing: -0.03em; margin-bottom: 16px;
+  }
+  .contact-strip p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; }
+  .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--white); border: 2px solid var(--ink);
+    padding: 16px 20px; font-weight: 600; font-size: 15px; color: var(--ink);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .contact-link:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+  .contact-link .icon { font-size: 20px; }
+
+  @media (max-width: 900px) {
+    .story-grid { grid-template-columns: 1fr; gap: 40px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 2px solid rgba(255,255,255,.15); }
+    .stat-item:last-child { border-bottom: none; }
+    .values-grid { grid-template-columns: 1fr; }
+    .contact-strip { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-row">
+    <a href="/" class="logo"><span class="dot"></span>Loot</a>
+    <ul class="nav-links">
+      <li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="trust.html">Trust & Safety</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="/#join" class="cta-pill">Join waitlist <span class="arr">→</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-it-works.html">How it works</a>
+    <a href="schools.html">Schools</a>
+    <a href="about.html">About</a>
+    <a href="trust.html">Trust & Safety</a>
+    <a href="faq.html">FAQ</a>
+    <a href="/#join">Join waitlist →</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="kicker reveal">About Loot</div>
+    <h1 class="reveal">Built at <em>McMaster.</em><br>Built for Canada.</h1>
+    <p class="reveal d1">We're students who got tired of sketchy Kijiji meetups, Facebook Marketplace strangers, and paying shipping on a $20 textbook. So we built the thing that should have existed already.</p>
+  </div>
+</div>
+
+<!-- Story -->
+<div class="wrap">
+  <div class="story-grid">
+    <div class="story-left reveal">
+      <h2>The gap that <em>nobody</em> filled.</h2>
+      <div class="pull-quote">
+        <p>Rumie has 300,000 users in the US. Canada has nothing. Every single .ca student is buying from strangers on Facebook.</p>
+        <cite>— Why we started building</cite>
+      </div>
+    </div>
+    <div class="story-body reveal d1">
+      <p>In the US, <strong>Rumie</strong> is the verified student marketplace — 300,000 users, .edu email verification, campus-only listings. It works because students trust other verified students.</p>
+      <p>In Canada? Nothing. Every Ontario student is either buying textbooks from strangers on Facebook Marketplace, getting gouged at the campus bookstore, or hoping the Reddit thread for their course code has someone selling. None of these have verification. None of them are campus-local. None of them are built for students.</p>
+      <p>UniPlace and DormPapi exist but have no verification layer, no traction, and no Canadian focus. The gap is enormous and nobody has filled it properly.</p>
+      <p>We're starting at <strong>McMaster University</strong> in Hamilton — where we're students — and expanding across every Ontario university and college by end of 2026. The .ca email whitelist is already built. The trust layer is already there. We just needed to build the marketplace on top of it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-strip">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="num">45+</div>
+        <div class="lbl">Ontario institutions at launch</div>
+      </div>
+      <div class="stat-item reveal d1">
+        <div class="num">500K+</div>
+        <div class="lbl">Ontario students who need this</div>
+      </div>
+      <div class="stat-item reveal d2">
+        <div class="num">$0</div>
+        <div class="lbl">Fees, commissions, or catches. Forever.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Values -->
+<div class="wrap">
+  <div class="values">
+    <div class="kicker reveal">What we believe</div>
+    <h2 class="section-title reveal">Three things we'll <em>never compromise.</em></h2>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-num">01</div>
+        <h4>Trust is the product.</h4>
+        <p>The .ca verification isn't a feature — it's the whole reason Loot exists. Every decision we make protects it. If it erodes trust, we don't do it.</p>
+      </div>
+      <div class="value-card reveal d1">
+        <div class="value-num">02</div>
+        <h4>Students keep the money.</h4>
+        <p>No commission on sales. No listing fees. No "pro" plan. You worked hard for your beer money. We're not taking 5% of every textbook you sell.</p>
+      </div>
+      <div class="value-card reveal d2">
+        <div class="value-num">03</div>
+        <h4>Built by students, reviewed by students.</h4>
+        <p>Every feature ships to McMaster first. Real students break it, complain about it, and tell us what actually matters before it goes wider.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-strip">
+    <div class="reveal">
+      <h3>Get in touch.</h3>
+      <p>We're students, not a PR department. If you're a journalist, investor, potential campus ambassador, or just someone with a great idea — email us directly. We read every message.</p>
+    </div>
+    <div class="contact-links reveal d1">
+      <a href="mailto:hello@lootapp.ca" class="contact-link">
+        <span class="icon">✉</span>
+        hello@lootapp.ca — General inquiries
+      </a>
+      <a href="mailto:press@lootapp.ca" class="contact-link">
+        <span class="icon">📰</span>
+        press@lootapp.ca — Media & press
+      </a>
+      <a href="mailto:ambassadors@lootapp.ca" class="contact-link">
+        <span class="icon">🎓</span>
+        ambassadors@lootapp.ca — Campus reps
+      </a>
+      <a href="mailto:invest@lootapp.ca" class="contact-link">
+        <span class="icon">📈</span>
+        invest@lootapp.ca — Investors
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Loot<span style="color:var(--gold);">.</span></div>
+        <p class="foot-tag">Your campus. Your marketplace. Built for every .ca student in Canada.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="schools.html">Schools</a></li>
+          <li><a href="/#join">Waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="trust.html">Trust & Safety</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="mailto:support@lootapp.ca">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Loot Marketplace Inc. · Toronto, ON</div>
+      <div>Made by students, for students</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

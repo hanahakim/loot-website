@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — Loot</title>
+<meta name="description" content="Frequently asked questions about Loot — the verified student marketplace for Ontario universities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .faq-categories {
+    display: flex; gap: 10px; flex-wrap: wrap; margin: 40px 0 16px;
+  }
+  .faq-cat-btn {
+    background: none; border: 2px solid var(--ink); padding: 8px 18px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .faq-cat-btn.active, .faq-cat-btn:hover { background: var(--ink); color: var(--paper); }
+
+  .faq-section { margin-bottom: 64px; }
+  .faq-section-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    padding-bottom: 16px; border-bottom: 2px solid var(--ink);
+  }
+  .faq-section-title::before { content: ""; display: inline-block; width: 24px; height: 2px; background: var(--gold); }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(10,10,10,.12);
+  }
+  .faq-q {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 22px 0; cursor: pointer; user-select: none;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: clamp(17px, 2vw, 20px); letter-spacing: -0.02em; line-height: 1.2;
+    transition: color .15s;
+  }
+  .faq-q:hover { color: var(--blue); }
+  .faq-icon {
+    width: 32px; height: 32px; border: 2px solid var(--ink); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 400; font-family: sans-serif;
+    transition: background .15s, transform .25s ease;
+    background: var(--paper);
+  }
+  .faq-item.open .faq-icon { background: var(--gold); transform: rotate(45deg); }
+  .faq-a {
+    display: none; padding: 0 0 24px 0;
+    font-size: 16px; color: var(--ink-soft); line-height: 1.7; max-width: 720px;
+  }
+  .faq-a.open { display: block; }
+  .faq-a p + p { margin-top: 12px; }
+  .faq-a a { color: var(--blue); text-decoration: underline; }
+
+  .still-have-q {
+    background: var(--paper-2); border: 2px solid var(--ink); padding: 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    flex-wrap: wrap; margin: 48px 0 80px;
+  }
+  .still-have-q h3 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 32px; letter-spacing: -0.03em; margin-bottom: 8px;
+  }
+  .still-have-q p { color: var(--ink-soft); }
+  .still-have-q a {
+    background: var(--ink); color: var(--paper);
+    padding: 16px 28px; font-weight: 700; font-size: 15px;
+    border: 2px solid var(--ink); white-space: nowrap;
+    transition: background .15s, color .15s;
+    display: inline-block;
+  }
+  .still-have-q a:hover { background: var(--gold); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-row">
+    <a href="/" class="logo"><span class="dot"></span>Loot</a>
+    <ul class="nav-links">
+      <li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="trust.html">Trust & Safety</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+    </ul>
+    <a href="/#join" class="cta-pill">Join waitlist <span class="arr">→</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-it-works.html">How it works</a>
+    <a href="schools.html">Schools</a>
+    <a href="about.html">About</a>
+    <a href="trust.html">Trust & Safety</a>
+    <a href="faq.html">FAQ</a>
+    <a href="/#join">Join waitlist →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="kicker reveal">FAQ</div>
+    <h1 class="reveal">The obvious <em>questions,</em><br>answered.</h1>
+    <p class="reveal d1">Everything you need to know before you sign up, sell something, or tell your friends about Loot.</p>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top: 72px;">
+
+  <!-- General -->
+  <div class="faq-section reveal">
+    <div class="faq-section-title">General</div>
+    <div class="faq-item">
+      <div class="faq-q">Is Loot free? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Yes. Completely free. No listing fees, no commission on sales, no "premium" tier that hides your listings. We take $0 from every transaction. Students keep 100% of what they sell.</p><p>We're building for adoption first. Loot exists to fill a gap — not to skim your beer money.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is Loot only for McMaster right now? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>At launch (Fall 2026), yes — Loot goes live at McMaster first. This is intentional. We want to build real density at one campus before spreading thin across 45. A marketplace only works if there are enough listings to browse.</p><p>We're expanding to all 45+ Ontario institutions by end of 2026. <a href="schools.html">See the full list and get notified for your school →</a></p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">When does Loot launch? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Fall 2026 at McMaster. We're targeting September, right as students move back to campus. The waitlist is open now — first 100 sign-ups per school get a permanent Founder badge.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is a Founder badge? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>The first 100 students to join Loot at each campus get a permanent "Founder" badge displayed on their profile and listings. It's a trust signal — other students can see you were there from day one. It never expires and can't be purchased.</p></div>
+    </div>
+  </div>
+
+  <!-- Signing up -->
+  <div class="faq-section reveal">
+    <div class="faq-section-title">Signing up</div>
+    <div class="faq-item">
+      <div class="faq-q">Why do I need a .ca email? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>The .ca email verification is the entire trust layer that makes Loot different from Facebook Marketplace. It proves you're a real, enrolled student at a Canadian institution. Without it, Loot is just another app where you might be talking to anyone.</p><p>Your email address is never shown to other users — they only see your first name and university.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">My school isn't on the list yet. Can I still sign up? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Not yet — but <a href="schools.html">drop your school and email on the Schools page</a> and we'll notify you the moment Loot launches at your campus. We're targeting all 45+ Ontario institutions by end of 2026.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">I'm an international student — does my .ca email count? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Yes. If your institution issued you a .ca email address and your school is on our supported list, you're in. Loot is for any verified student at a supported Canadian institution — domestic or international.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What happens when I graduate and lose my .ca email? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Great question — we're still figuring this one out. Our current plan is to let alumni keep their accounts as read-only (browsing + messaging), but new listings require an active .ca email. We'll communicate any changes clearly before they happen.</p></div>
+    </div>
+  </div>
+
+  <!-- Buying & Selling -->
+  <div class="faq-section reveal">
+    <div class="faq-section-title">Buying & Selling</div>
+    <div class="faq-item">
+      <div class="faq-q">What can I sell on Loot? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Anything a student would reasonably want to buy from another student: textbooks, course notes, electronics, laptops, furniture, dorm decor, bikes, clothing, sports equipment, musical instruments, and more.</p><p>Prohibited: alcohol, tobacco, controlled substances, weapons, counterfeit goods, or anything illegal under Canadian law. Listings that violate this are removed immediately and accounts are banned.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I pay? Does Loot process payments? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Loot doesn't touch the money. Ever. Payment is between you and the other student — e-transfer, cash, Venmo, whatever you both agree on. This keeps it simple, keeps us out of it, and means zero fees.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if someone doesn't show up? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>No-shows are the most common issue in peer-to-peer marketplaces. If someone ghosts you:</p><p>1. Leave them a 1-star rating with a note. This is visible to future users.<br>2. Report the no-show through the app. Repeat no-shows get their accounts restricted.<br>3. Relist your item — it happens, it's annoying, but it's usually a one-off.</p><p>We're working on a confirmation system (both parties confirm the meetup time) to reduce no-shows before launch.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if the item isn't as described? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Inspect the item before you pay. If it doesn't match the listing, you're under no obligation to buy it. Walk away, leave an honest rating, and report the listing if it was deliberately misleading.</p><p>Since Loot doesn't process payments, we can't issue refunds. But we can — and will — remove misleading listings and ban users who repeatedly misrepresent items.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I rent items on Loot? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Yes. When creating a listing, choose "Rent" as the listing type and set a price per day, week, month, or semester. You can also set availability dates (available from / available to).</p><p>Rental agreements and deposits are between you and the other student — Loot doesn't enforce them. Use your judgment and only rent to users with good ratings.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I trade items? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Yes. Choose "Trade" as the listing type and describe what you're looking for in exchange. Other users can message you with offers. Trades work exactly like sales — meet on campus and exchange in person.</p></div>
+    </div>
+  </div>
+
+  <!-- Safety -->
+  <div class="faq-section reveal">
+    <div class="faq-section-title">Safety</div>
+    <div class="faq-item">
+      <div class="faq-q">Is it safe to meet a stranger from an app? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>On Loot, the person isn't a stranger — they're a verified student at your university. That's meaningfully different from Facebook Marketplace.</p><p>Still, basic precautions apply: meet in public campus spaces (library, student centre, dining hall), bring a friend for big-ticket items, inspect before paying, and meet during the day. <a href="trust.html">Read our full safe meetup guide →</a></p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I see who I'm buying from before I meet them? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Yes. Every Loot profile shows the user's first name, university, member since date, rating average, number of completed transactions, and all active listings. You can get a clear picture of who you're dealing with before committing to a meetup.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I report a user or listing? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Every listing, profile, and chat has a Report button. Tap it, select the reason, add any details, and submit. Our team reviews every report within 24 hours.</p><p>For urgent safety concerns, email <a href="mailto:safety@lootapp.ca">safety@lootapp.ca</a> directly.</p></div>
+    </div>
+  </div>
+
+  <!-- Still have questions -->
+  <div class="still-have-q reveal">
+    <div>
+      <h3>Still have questions?</h3>
+      <p>We're students, not a support bot. Email us and we'll actually reply.</p>
+    </div>
+    <a href="mailto:support@lootapp.ca">support@lootapp.ca →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Loot<span style="color:var(--gold);">.</span></div>
+        <p class="foot-tag">Your campus. Your marketplace. Built for every .ca student in Canada.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="schools.html">Schools</a></li>
+          <li><a href="/#join">Waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="trust.html">Trust & Safety</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="mailto:support@lootapp.ca">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Loot Marketplace Inc. · Toronto, ON</div>
+      <div>Made by students, for students</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.faq-a').classList.add('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trust & Safety — Loot</title>
+<meta name="description" content="How Loot verifies students, protects users, and handles disputes. Safe, verified, campus-only marketplace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .trust-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px;
+  }
+  .trust-card {
+    background: var(--white); border: 2px solid var(--ink); padding: 36px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .trust-card:hover { transform: translate(-3px,-4px); box-shadow: 7px 7px 0 var(--ink); }
+  .trust-card.gold { background: var(--gold); }
+  .trust-card.blue { background: var(--blue); color: #fff; }
+  .trust-card.dark { background: var(--ink); color: var(--paper); }
+  .trust-icon { font-size: 36px; margin-bottom: 20px; }
+  .trust-card h3 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 24px; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1;
+  }
+  .trust-card p { font-size: 15px; line-height: 1.65; opacity: 0.82; }
+
+  .process-steps { margin-top: 48px; display: flex; flex-direction: column; gap: 0; border: 2px solid var(--ink); }
+  .process-step {
+    display: flex; gap: 32px; align-items: flex-start;
+    padding: 36px 40px; border-bottom: 2px solid var(--ink); background: var(--white);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .process-step:nth-child(odd) { background: var(--paper-2); }
+  .process-num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 48px; line-height: 1; letter-spacing: -0.04em; color: var(--blue);
+    flex-shrink: 0; width: 64px;
+  }
+  .process-content h4 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 22px; letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .process-content p { font-size: 15px; color: var(--ink-soft); line-height: 1.65; }
+
+  .report-cta {
+    background: var(--blue-deep); color: #fff; padding: 72px 0;
+    border-top: 2px solid var(--ink); text-align: center;
+  }
+  .report-cta h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(32px, 5vw, 56px); letter-spacing: -0.03em; margin-bottom: 16px;
+  }
+  .report-cta p { color: rgba(255,255,255,.7); font-size: 17px; margin-bottom: 32px; }
+  .report-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--ink); border: 2px solid var(--gold);
+    padding: 16px 28px; font-weight: 700; font-size: 16px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .report-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(240,165,0,.4); }
+
+  @media (max-width: 760px) {
+    .trust-grid { grid-template-columns: 1fr; }
+    .process-step { flex-direction: column; gap: 12px; padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-row">
+    <a href="/" class="logo"><span class="dot"></span>Loot</a>
+    <ul class="nav-links">
+      <li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="trust.html" class="active">Trust & Safety</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="/#join" class="cta-pill">Join waitlist <span class="arr">→</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-it-works.html">How it works</a>
+    <a href="schools.html">Schools</a>
+    <a href="about.html">About</a>
+    <a href="trust.html">Trust & Safety</a>
+    <a href="faq.html">FAQ</a>
+    <a href="/#join">Join waitlist →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="kicker reveal">Trust & Safety</div>
+    <h1 class="reveal">Verified students.<br><em>Safe exchanges.</em></h1>
+    <p class="reveal d1">Every Loot user is a real, verified Ontario student. Here's how we keep it that way — and what happens when something goes wrong.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- How verification works -->
+  <div class="section" style="padding-bottom: 64px; border-bottom: 2px solid var(--ink);">
+    <div class="kicker reveal">Verification</div>
+    <h2 class="section-title reveal">How we verify <em>every user.</em></h2>
+    <div class="section-lede reveal d1" style="margin-top: 16px; margin-bottom: 0;">Every account on Loot is tied to a verified .ca institutional email. No .ca email, no account. Full stop.</div>
+
+    <div class="trust-grid">
+      <div class="trust-card reveal">
+        <div class="trust-icon">✉️</div>
+        <h3>.ca email required at signup</h3>
+        <p>You can only create a Loot account with an email from a recognized Canadian university or college. We maintain a live whitelist of 45+ Ontario .ca domains. Gmail, Hotmail, and personal addresses are blocked.</p>
+      </div>
+      <div class="trust-card gold reveal d1">
+        <div class="trust-icon">🔗</div>
+        <h3>One-click email confirmation</h3>
+        <p>After signup, we send a confirmation link to your .ca email. Your account isn't activated until you click it. This confirms that you actually have access to that inbox — not just knowledge of the address.</p>
+      </div>
+      <div class="trust-card blue reveal d2">
+        <div class="trust-icon">🎓</div>
+        <h3>Tied to your institution</h3>
+        <p>Your profile shows your university — not your email. Other users see "McMaster University" or "University of Waterloo." They know you're a real student there without knowing who you are off-campus.</p>
+      </div>
+      <div class="trust-card dark reveal d3">
+        <div class="trust-icon">⚡</div>
+        <h3>Instant, permanent verification</h3>
+        <p>Verify once at the start of your degree — you're in for as long as your .ca email is active. No annual re-verification, no re-uploading IDs. Verification happens in real time, not 24 hours later.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dispute process -->
+  <div class="section" style="padding-bottom: 64px; border-bottom: 2px solid var(--ink);">
+    <div class="kicker reveal">Dispute process</div>
+    <h2 class="section-title reveal">What happens when <em>something goes wrong.</em></h2>
+    <div class="section-lede reveal d1" style="margin-top: 16px;">Loot doesn't process payments, so we can't issue refunds. But we can — and will — remove bad actors from the platform.</div>
+
+    <div class="process-steps reveal d2">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div class="process-content">
+          <h4>Report through the app</h4>
+          <p>Every listing, user profile, and chat has a Report button. Tap it, select the issue (no-show, item not as described, harassment, fraud), and add details. Reports go directly to our team.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div class="process-content">
+          <h4>We review within 24 hours</h4>
+          <p>Our team reviews every report. We look at chat logs, listing history, ratings, and past reports. Both parties may be contacted for their account of events.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div class="process-content">
+          <h4>Action taken on bad actors</h4>
+          <p>Depending on severity: we issue a warning, suspend the listing, temporarily restrict the account, or permanently ban the user. Permanent bans are tied to the .ca email — ban evasion is not possible without a new institutional email.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <div class="process-content">
+          <h4>Ratings protect the community long-term</h4>
+          <p>Even before a formal report, the rating system surfaces bad actors naturally. Users who ghost, misrepresent items, or behave poorly accumulate low ratings that are visible to everyone. The community self-polices.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Safe meetup guidelines -->
+  <div class="section">
+    <div class="kicker reveal">Safe meetups</div>
+    <h2 class="section-title reveal">Meeting a seller <em>safely.</em></h2>
+    <div class="trust-grid" style="margin-top: 40px;">
+      <div class="trust-card reveal">
+        <div class="trust-icon">📍</div>
+        <h3>Meet in public campus spaces</h3>
+        <p>Library lobbies, student centres, dining halls, building entrances. Avoid meeting in dorm rooms, parking lots, or off-campus locations — especially for larger transactions.</p>
+      </div>
+      <div class="trust-card reveal d1">
+        <div class="trust-icon">👫</div>
+        <h3>Bring a friend for big purchases</h3>
+        <p>For transactions over $100, bring someone with you. It's not paranoid — it's smart. The other person almost certainly doesn't mind.</p>
+      </div>
+      <div class="trust-card reveal d2">
+        <div class="trust-icon">📸</div>
+        <h3>Inspect before you pay</h3>
+        <p>Check the item matches the photos and description before handing over money. If it doesn't match, you're under no obligation to complete the sale. Walk away and report the listing.</p>
+      </div>
+      <div class="trust-card gold reveal d3">
+        <div class="trust-icon">🕐</div>
+        <h3>Meet during daylight hours</h3>
+        <p>Especially for your first transaction. Campus buildings are open and staffed — use them. Most Loot meetups take less than five minutes.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="report-cta">
+  <div class="wrap">
+    <h2>Something feel off?</h2>
+    <p>Report it immediately. Our team reviews every report, every day.</p>
+    <a href="mailto:safety@lootapp.ca" class="report-btn">Report an issue → safety@lootapp.ca</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Loot<span style="color:var(--gold);">.</span></div>
+        <p class="foot-tag">Your campus. Your marketplace. Built for every .ca student in Canada.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="schools.html">Schools</a></li>
+          <li><a href="/#join">Waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="trust.html">Trust & Safety</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="mailto:support@lootapp.ca">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Loot Marketplace Inc. · Toronto, ON</div>
+      <div>Made by students, for students</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schools — Loot</title>
+<meta name="description" content="Loot is launching at McMaster and expanding to 45+ Ontario universities and colleges. Find your school and join the waitlist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .launch-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); border: 2px solid var(--ink);
+    padding: 8px 16px; font-weight: 700; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-top: 32px;
+  }
+  .launch-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
+
+  .schools-section { padding: 72px 0; }
+  .schools-section + .schools-section { border-top: 2px solid var(--ink); }
+
+  .school-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px; margin-top: 40px;
+  }
+  .school-card {
+    background: var(--white); border: 2px solid var(--ink); padding: 20px 22px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .school-card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+  .school-card.launching { background: var(--gold); }
+  .school-card.launching .school-status { background: var(--ink); color: var(--paper); }
+  .school-info { flex: 1; }
+  .school-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -0.02em; line-height: 1.2; }
+  .school-city { font-size: 13px; color: var(--ink-mute); margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
+  .school-status {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    background: var(--paper-2); border: 1px solid var(--ink);
+    padding: 4px 10px; white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* Notify modal */
+  .notify-section {
+    background: var(--paper-2); border: 2px solid var(--ink);
+    padding: 48px; margin-top: 56px;
+  }
+  .notify-section h3 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 32px; letter-spacing: -0.03em; margin-bottom: 12px;
+  }
+  .notify-section p { color: var(--ink-soft); margin-bottom: 28px; font-size: 16px; }
+  .notify-form { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+  .notify-form input[type=text], .notify-form input[type=email] {
+    border: 2px solid var(--ink); background: #fff; padding: 14px 18px;
+    font-size: 15px; outline: none; flex: 1; min-width: 180px;
+    transition: box-shadow .2s ease;
+  }
+  .notify-form input:focus { box-shadow: 0 0 0 3px var(--gold); }
+  .notify-form button {
+    background: var(--ink); color: var(--paper); border: 2px solid var(--ink);
+    padding: 14px 24px; font-weight: 600; font-size: 15px; cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .notify-form button:hover { background: var(--gold); color: var(--ink); }
+  .notify-note { margin-top: 10px; font-size: 13px; color: var(--ink-mute); width: 100%; }
+  .notify-note.success { color: #15803d; }
+  .notify-note.error { color: #c0392b; }
+
+  @media (max-width: 600px) {
+    .school-grid { grid-template-columns: 1fr; }
+    .notify-section { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-row">
+    <a href="/" class="logo"><span class="dot"></span>Loot</a>
+    <ul class="nav-links">
+      <li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="schools.html" class="active">Schools</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="trust.html">Trust & Safety</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="/#join" class="cta-pill">Join waitlist <span class="arr">→</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-it-works.html">How it works</a>
+    <a href="schools.html">Schools</a>
+    <a href="about.html">About</a>
+    <a href="trust.html">Trust & Safety</a>
+    <a href="faq.html">FAQ</a>
+    <a href="/#join">Join waitlist →</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="kicker reveal">Schools</div>
+    <h1 class="reveal">45+ campuses.<br><em>One app.</em></h1>
+    <p class="reveal d1">Loot is launching at McMaster in Fall 2026 and expanding across every Ontario university and college. Find your school below.</p>
+    <div class="launch-badge reveal d2"><span class="dot"></span> Live Fall 2026 — McMaster University</div>
+  </div>
+</div>
+
+<!-- Launching first -->
+<div class="wrap">
+  <div class="schools-section">
+    <div class="kicker reveal">Launching first</div>
+    <h2 class="section-title reveal">Where it <em>starts.</em></h2>
+    <div class="school-grid">
+      <div class="school-card launching reveal">
+        <div class="school-info">
+          <div class="school-name">McMaster University</div>
+          <div class="school-city">Hamilton, ON · @mcmaster.ca</div>
+        </div>
+        <div class="school-status">Live Fall 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Universities -->
+  <div class="schools-section">
+    <div class="kicker reveal">Universities</div>
+    <h2 class="section-title reveal">Coming to <em>your campus.</em></h2>
+    <div class="school-grid" id="uniGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- Colleges -->
+  <div class="schools-section">
+    <div class="kicker reveal">Colleges</div>
+    <h2 class="section-title reveal">Colleges <em>too.</em></h2>
+    <div class="school-grid" id="collegeGrid"></div>
+  </div>
+
+  <!-- Notify form -->
+  <div class="notify-section reveal">
+    <h3>Don't see your school yet?</h3>
+    <p>Drop your school name and .ca email — we'll notify you the moment Loot launches at your campus.</p>
+    <form class="notify-form" id="notifyForm" novalidate>
+      <input type="text" id="schoolName" placeholder="Your school (e.g. Western University)" required>
+      <input type="email" id="notifyEmail" placeholder="you@uwo.ca" required>
+      <button type="submit">Notify me →</button>
+      <div class="notify-note" id="notifyNote">We'll only email you about your campus launch.</div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Loot<span style="color:var(--gold);">.</span></div>
+        <p class="foot-tag">Your campus. Your marketplace. Built for every .ca student in Canada.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="schools.html">Schools</a></li>
+          <li><a href="/#join">Waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="trust.html">Trust & Safety</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="mailto:support@lootapp.ca">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Loot Marketplace Inc. · Toronto, ON</div>
+      <div>Made by students, for students</div>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+const universities = [
+  { name: "University of Toronto", city: "Toronto, ON", domain: "@utoronto.ca" },
+  { name: "Western University", city: "London, ON", domain: "@uwo.ca" },
+  { name: "Queen's University", city: "Kingston, ON", domain: "@queensu.ca" },
+  { name: "University of Waterloo", city: "Waterloo, ON", domain: "@uwaterloo.ca" },
+  { name: "York University", city: "Toronto, ON", domain: "@yorku.ca" },
+  { name: "Toronto Metropolitan University", city: "Toronto, ON", domain: "@torontomu.ca" },
+  { name: "University of Ottawa", city: "Ottawa, ON", domain: "@uottawa.ca" },
+  { name: "Carleton University", city: "Ottawa, ON", domain: "@carleton.ca" },
+  { name: "University of Guelph", city: "Guelph, ON", domain: "@uoguelph.ca" },
+  { name: "Wilfrid Laurier University", city: "Waterloo, ON", domain: "@wlu.ca" },
+  { name: "Brock University", city: "St. Catharines, ON", domain: "@brocku.ca" },
+  { name: "Lakehead University", city: "Thunder Bay, ON", domain: "@lakeheadu.ca" },
+  { name: "Laurentian University", city: "Sudbury, ON", domain: "@laurentian.ca" },
+  { name: "Nipissing University", city: "North Bay, ON", domain: "@nipissingu.ca" },
+  { name: "Ontario Tech University", city: "Oshawa, ON", domain: "@ontariotechu.ca" },
+  { name: "Trent University", city: "Peterborough, ON", domain: "@trentu.ca" },
+  { name: "University of Windsor", city: "Windsor, ON", domain: "@uwindsor.ca" },
+  { name: "Algoma University", city: "Sault Ste. Marie, ON", domain: "@algomau.ca" },
+  { name: "OCAD University", city: "Toronto, ON", domain: "@ocadu.ca" },
+];
+const colleges = [
+  { name: "Seneca Polytechnic", city: "Toronto, ON", domain: "@myseneca.ca" },
+  { name: "George Brown College", city: "Toronto, ON", domain: "@georgebrown.ca" },
+  { name: "Humber Polytechnic", city: "Etobicoke, ON", domain: "@humber.ca" },
+  { name: "Centennial College", city: "Toronto, ON", domain: "@centennialcollege.ca" },
+  { name: "Sheridan College", city: "Brampton, ON", domain: "@sheridancollege.ca" },
+  { name: "Mohawk College", city: "Hamilton, ON", domain: "@mohawkcollege.ca" },
+  { name: "Conestoga College", city: "Kitchener, ON", domain: "@conestogac.on.ca" },
+  { name: "Durham College", city: "Oshawa, ON", domain: "@durhamcollege.ca" },
+  { name: "Algonquin College", city: "Ottawa, ON", domain: "@algonquincollege.com" },
+  { name: "Fanshawe College", city: "London, ON", domain: "@fanshawec.ca" },
+  { name: "St. Clair College", city: "Windsor, ON", domain: "@stclaircollege.ca" },
+  { name: "Lambton College", city: "Sarnia, ON", domain: "@lambton.on.ca" },
+  { name: "Fleming College", city: "Peterborough, ON", domain: "@flemingcollege.ca" },
+  { name: "Georgian College", city: "Barrie, ON", domain: "@georgiancollege.ca" },
+  { name: "Cambrian College", city: "Sudbury, ON", domain: "@cambriancollege.ca" },
+  { name: "Canadore College", city: "North Bay, ON", domain: "@canadorecollege.ca" },
+  { name: "Confederation College", city: "Thunder Bay, ON", domain: "@confederationc.on.ca" },
+  { name: "Northern College", city: "Timmins, ON", domain: "@northern.on.ca" },
+  { name: "Sault College", city: "Sault Ste. Marie, ON", domain: "@saultcollege.ca" },
+  { name: "St. Lawrence College", city: "Kingston, ON", domain: "@sl.on.ca" },
+];
+
+function renderGrid(data, containerId) {
+  const grid = document.getElementById(containerId);
+  data.forEach((s, i) => {
+    const delay = i % 4;
+    grid.innerHTML += `
+      <div class="school-card reveal d${delay}">
+        <div class="school-info">
+          <div class="school-name">${s.name}</div>
+          <div class="school-city">${s.city} · ${s.domain}</div>
+        </div>
+        <div class="school-status">Coming soon</div>
+      </div>`;
+  });
+  grid.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+}
+
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+renderGrid(universities, 'uniGrid');
+renderGrid(colleges, 'collegeGrid');
+
+// Notify form
+document.getElementById('notifyForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const school = document.getElementById('schoolName').value.trim();
+  const email = document.getElementById('notifyEmail').value.trim();
+  const note = document.getElementById('notifyNote');
+  if (!school) { note.className = 'notify-note error'; note.textContent = 'Please enter your school name.'; return; }
+  if (!email) { note.className = 'notify-note error'; note.textContent = 'Please enter your email.'; return; }
+  if (!/\.ca$/i.test(email)) { note.className = 'notify-note error'; note.textContent = 'Please use your .ca campus email.'; return; }
+  note.className = 'notify-note success';
+  note.textContent = `✓ Got it! We'll notify you when Loot launches at ${school}.`;
+  document.getElementById('schoolName').value = '';
+  document.getElementById('notifyEmail').value = '';
+});
+</script>
+</body>
+</html>
