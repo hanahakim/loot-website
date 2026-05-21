@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Payments — Loot</title>
+<meta name="description" content="Loot uses Stripe to process payments securely. Here's exactly what happens to your money." />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo"><span class="logo-mark"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 2h5v12h7v4H4V2z" fill="#f4ede0"/></svg></span><span class="logo-word">Loot</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="ambassador.html">Ambassadors</a></li>
+      <li><a href="index.html#waitlist" class="btn-pill">Join Waitlist</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <span class="section-tag reveal">Simple, secure, Canadian</span>
+    <h1 class="reveal d1">How payments work.</h1>
+    <p class="reveal d2">Loot uses Stripe to process payments securely. Here's exactly what happens to your money.</p>
+  </div>
+</section>
+
+<!-- Buyer + Seller split -->
+<section class="section section-white" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">For everyone</span>
+      <h2>Clear for buyers.<br/>Simple for sellers.</h2>
+    </div>
+    <div class="split-2">
+      <div class="split-card reveal">
+        <h3>
+          <span class="split-icon buyer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+          For buyers
+        </h3>
+        <ul class="icon-list">
+          <li>
+            <span class="icon-bul green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <span><strong style="color:var(--ink);">Pay in-app at checkout.</strong> Enter your card once. Loot uses Stripe — the same payment infrastructure as Amazon, Shopify, and Uber.</span>
+          </li>
+          <li>
+            <span class="icon-bul green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <span><strong style="color:var(--ink);">Funds are held briefly.</strong> Your payment is held securely while you complete the meetup. You have 48 hours to confirm or dispute after meeting the seller.</span>
+          </li>
+          <li>
+            <span class="icon-bul green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <span><strong style="color:var(--ink);">Covered by buyer protection.</strong> Every in-app payment is backed by Loot's buyer protection policy. If something goes wrong, we make it right.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="split-card reveal d1">
+        <h3>
+          <span class="split-icon seller"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+          For sellers
+        </h3>
+        <ul class="icon-list">
+          <li>
+            <span class="icon-bul green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <span><strong style="color:var(--ink);">Get paid directly to your bank.</strong> Loot uses Stripe Connect to send payouts to your Canadian bank account. One-time setup, under 5 minutes.</span>
+          </li>
+          <li>
+            <span class="icon-bul green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <span><strong style="color:var(--ink);">Service fee.</strong> Loot may charge a service fee of up to 5% on completed in-app sales — covering payment processing, buyer protection, and keeping the platform running. You see the exact amount before confirming any listing.</span>
+          </li>
+          <li>
+            <span class="icon-bul green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <span><strong style="color:var(--ink);">Payout timing.</strong> Funds are released to your bank within 2–7 business days after the buyer confirms the transaction. Standard Stripe payout schedule.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Security -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">Security</span>
+      <h2>Your money is safe.</h2>
+      <p>Loot never stores your card details. Payments are handled entirely by Stripe — one of the most trusted payment processors in the world.</p>
+    </div>
+    <div class="security-grid">
+      <div class="security-item reveal">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div><h3>PCI DSS compliant</h3><p>All payments processed by Stripe, which is certified to the highest standard in payment security.</p></div>
+      </div>
+      <div class="security-item reveal d1">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg></div>
+        <div><h3>Zero card storage</h3><p>Loot never stores your card details. They go straight to Stripe's encrypted vault, not our servers.</p></div>
+      </div>
+      <div class="security-item reveal d2">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg></div>
+        <div><h3>Bank-level encryption</h3><p>Every transaction uses TLS encryption end-to-end. Your data moves in a locked box.</p></div>
+      </div>
+      <div class="security-item reveal d3">
+        <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 6 0v-4"/><path d="M7 9H3l1 7h16l1-7h-4"/><path d="M7 9a5 5 0 0 1 10 0"/></svg></div>
+        <div><h3>Funds frozen during disputes</h3><p>If a buyer opens a dispute, the seller's payout is frozen immediately until we review and decide.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-white">
+  <div class="container" style="max-width:800px;">
+    <div class="section-head reveal">
+      <span class="section-tag">Common questions</span>
+      <h2>Quick answers.</h2>
+    </div>
+    <div class="faq-list reveal" style="margin-top:40px;">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="pfaq1">What cards are accepted?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-body" id="pfaq1">Visa, Mastercard, and prepaid cards. Apple Pay and Google Pay coming soon.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="pfaq2">Can I still pay cash?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-body" id="pfaq2">Yes. Cash and e-transfer deals are allowed — but they don't include buyer protection. Your call. For anything above $50, we strongly recommend paying through the app.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="pfaq3">What's the 5% fee on exactly?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-body" id="pfaq3">The final agreed sale price. If Loot charges its full 5%, on a $40 textbook that's $2.00 — you keep $38. The fee is shown upfront before you confirm any listing. No surprises.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="pfaq4">What if a payment fails?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-body" id="pfaq4">You'll see an error in the app and your card won't be charged. Try a different card or contact <a href="mailto:support@lootapp.ca">support@lootapp.ca</a>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-pine">
+  <div class="container cta-inner">
+    <h2 class="reveal">Secure payments.<br/><span class="accent">Full protection.</span></h2>
+    <p class="reveal d1">Pay through Loot and every transaction is backed by our buyer protection policy.</p>
+    <div class="reveal d2" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="buyer-protection.html" class="btn-pill">Learn about buyer protection →</a>
+      <a href="index.html#waitlist" class="btn-outline">Join the waitlist</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><a href="/" class="logo logo-dark"><span class="logo-mark"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 2h5v12h7v4H4V2z" fill="#f4ede0"/></svg></span><span class="logo-word">Loot</span></a><p class="footer-tagline">Starting in Ontario · Expanding across Canada.</p></div>
+      <div class="footer-col">
+        <p class="footer-col-title">Product</p>
+        <nav class="footer-col-links"><a href="how-it-works.html">How it works</a><a href="schools.html">Schools</a><a href="buyer-protection.html">Buyer Protection</a><a href="payments.html">Payments</a></nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Company</p>
+        <nav class="footer-col-links"><a href="about.html">About</a><a href="trust.html">Trust &amp; Safety</a><a href="faq.html">FAQ</a><a href="ambassador.html">Ambassadors</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:support@lootapp.ca">support@lootapp.ca</a></nav>
+      </div>
+      <div class="footer-col"><p class="footer-col-title">Categories</p><nav class="footer-col-links"><a href="textbooks.html">Textbooks</a><a href="electronics.html">Electronics</a><a href="furniture.html">Furniture</a><a href="clothing.html">Clothing</a><a href="rentals.html">Rentals</a><a href="trades.html">Trades</a></nav></div>
+    </div>
+    <div class="footer-bottom"><small>© 2026 Loot. Built for Canadian students.</small><span class="footer-mark">Made on campus</span></div>
+  </div>
+</footer>
+<script src="nav.js" defer></script>
+</body>
+</html>

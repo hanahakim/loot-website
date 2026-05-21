@@ -1,636 +1,316 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Loot — Your campus. Your marketplace.</title>
-<meta name="description" content="A verified student-to-student marketplace for Ontario universities. Buy, sell, rent — on campus. .ca emails only.">
-<meta property="og:title" content="Loot — Your campus. Your marketplace.">
-<meta property="og:description" content="The campus marketplace built for Canadian university students. Verified students. Zero strangers.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --blue: #0f5c8a;
-    --blue-deep: #062c47;
-    --gold: #f0a500;
-    --ink: #111827;
-    --ink-soft: #6b7280;
-    --ink-mute: #9ca3af;
-    --bg: #ffffff;
-    --bg-soft: #f9fafb;
-    --border: #e5e7eb;
-    --border-strong: #d1d5db;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body {
-    font-family: 'DM Sans', system-ui, sans-serif;
-    background: var(--bg); color: var(--ink);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden; font-size: 17px; line-height: 1.6;
-  }
-  img, svg { display: block; max-width: 100%; }
-  a { text-decoration: none; color: inherit; }
-  button, input { font: inherit; color: inherit; }
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-
-  /* ─── Nav ─────────────────────────────────────────────────────── */
-  nav.top {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 32px; height: 64px;
-    max-width: 1200px; margin: 0 auto; gap: 24px;
-  }
-  .logo {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: 24px; letter-spacing: -0.04em; color: var(--blue);
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .logo-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--gold); display: inline-block;
-    margin-bottom: 1px;
-  }
-  .nav-links {
-    display: flex; gap: 32px; list-style: none; align-items: center;
-  }
-  .nav-links a {
-    font-size: 14px; font-weight: 500; color: var(--ink-soft);
-    transition: color .15s;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-links a.active { color: var(--blue); font-weight: 600; }
-  .nav-cta {
-    background: var(--blue); color: #fff;
-    padding: 9px 20px; border-radius: 8px;
-    font-weight: 600; font-size: 14px; border: none;
-    display: inline-flex; align-items: center; gap: 6px;
-    transition: background .15s, transform .15s;
-    cursor: pointer; text-decoration: none;
-  }
-  .nav-cta:hover { background: var(--blue-deep); transform: translateY(-1px); }
-  .hamburger {
-    display: none; background: none; border: 1px solid var(--border);
-    width: 40px; height: 40px; border-radius: 8px; cursor: pointer;
-    flex-direction: column; gap: 5px; align-items: center; justify-content: center;
-  }
-  .hamburger span { width: 18px; height: 1.5px; background: var(--ink); display: block; }
-  .mobile-menu {
-    display: none; background: var(--bg); border-bottom: 1px solid var(--border);
-    padding: 8px 24px 20px;
-  }
-  .mobile-menu.open { display: block; }
-  .mobile-menu a {
-    display: block; padding: 12px 0; border-bottom: 1px solid var(--border);
-    font-weight: 500; font-size: 16px; color: var(--ink); transition: color .15s;
-  }
-  .mobile-menu a:hover { color: var(--blue); }
-  .mobile-menu a:last-child { border-bottom: none; }
-
-  /* ─── Hero ─────────────────────────────────────────────────────── */
-  .hero {
-    padding: 96px 0 80px;
-    border-bottom: 1px solid var(--border);
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: #eff6ff; color: var(--blue);
-    border: 1px solid #bfdbfe;
-    padding: 6px 14px; border-radius: 999px;
-    font-size: 13px; font-weight: 600;
-    margin-bottom: 32px;
-  }
-  .hero-badge .pulse {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--gold);
-    animation: pulse-anim 2s infinite;
-  }
-  @keyframes pulse-anim {
-    0%,100% { box-shadow: 0 0 0 0 rgba(240,165,0,.6); }
-    50% { box-shadow: 0 0 0 6px rgba(240,165,0,0); }
-  }
-  .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
-
-  h1.hero-title {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: clamp(48px, 7vw, 88px);
-    line-height: 1; letter-spacing: -0.04em;
-    margin-bottom: 24px; color: var(--ink);
-  }
-  h1.hero-title .highlight {
-    color: var(--blue);
-  }
-  .hero-sub {
-    font-size: 18px; line-height: 1.65; color: var(--ink-soft);
-    max-width: 480px; margin-bottom: 36px;
-  }
-  .hero-sub strong { color: var(--ink); font-weight: 600; }
-
-  /* ─── Waitlist form ─────────────────────────────────────────────── */
-  .waitlist-form {
-    display: flex; background: #fff;
-    border: 1.5px solid var(--border-strong);
-    border-radius: 10px; overflow: hidden; max-width: 480px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.06);
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .waitlist-form:focus-within {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(15,92,138,.12);
-  }
-  .waitlist-form input {
-    flex: 1; border: none; outline: none; font-size: 15px;
-    padding: 14px 16px; background: transparent; color: var(--ink);
-  }
-  .waitlist-form input::placeholder { color: var(--ink-mute); }
-  .waitlist-form button {
-    background: var(--blue); color: #fff; border: none;
-    padding: 14px 22px; font-weight: 600; font-size: 14px;
-    cursor: pointer; white-space: nowrap; margin: 4px; border-radius: 7px;
-    transition: background .15s;
-  }
-  .waitlist-form button:hover { background: var(--blue-deep); }
-  .form-trust {
-    display: flex; gap: 16px; margin-top: 12px; padding-left: 2px;
-  }
-  .form-trust span {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 12px; color: var(--ink-mute);
-  }
-  .form-trust svg { width: 12px; height: 12px; color: var(--blue); }
-  .form-msg { margin-top: 10px; font-size: 13px; padding-left: 2px; }
-  .form-msg.error { color: #dc2626; }
-  .form-msg.success { color: #16a34a; }
-
-  /* ─── Hero stat cards ───────────────────────────────────────────── */
-  .hero-stats { display: flex; flex-direction: column; gap: 16px; }
-  .stat-card {
-    background: var(--bg-soft); border: 1px solid var(--border);
-    border-radius: 12px; padding: 24px 28px;
-  }
-  .stat-card.accent { background: var(--blue); color: #fff; border-color: var(--blue); }
-  .stat-card .num {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: 40px; line-height: 1; letter-spacing: -0.03em;
-  }
-  .stat-card .lbl { font-size: 13px; margin-top: 6px; color: var(--ink-soft); font-weight: 500; }
-  .stat-card.accent .lbl { color: rgba(255,255,255,.75); }
-
-  /* ─── Ticker ────────────────────────────────────────────────────── */
-  .ticker {
-    background: var(--blue-deep);
-    overflow: hidden; padding: 14px 0;
-    border-top: none; border-bottom: none;
-  }
-  .ticker-track {
-    display: flex; gap: 48px; white-space: nowrap;
-    width: max-content; animation: scroll-left 50s linear infinite;
-  }
-  .ticker-track span {
-    font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    display: inline-flex; align-items: center; gap: 48px;
-  }
-  .ticker-track span::after { content: "·"; color: var(--gold); }
-  @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  /* ─── Sections ──────────────────────────────────────────────────── */
-  .section { padding: 96px 0; }
-  .section-label {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--blue);
-    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
-  }
-  .section-label::before {
-    content: ""; display: inline-block;
-    width: 20px; height: 2px; background: var(--gold); flex-shrink: 0;
-  }
-  h2.h2 {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: clamp(32px, 5vw, 56px); letter-spacing: -0.03em;
-    line-height: 1.05; color: var(--ink); max-width: 640px;
-  }
-  .section-intro { max-width: 520px; font-size: 17px; color: var(--ink-soft); line-height: 1.7; margin-top: 16px; }
-
-  /* ─── Features ──────────────────────────────────────────────────── */
-  .features-section { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .features-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-bottom: 56px; }
-  .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .feature-card {
-    background: #fff; border: 1px solid var(--border); border-radius: 14px;
-    padding: 32px; transition: box-shadow .2s, transform .2s;
-  }
-  .feature-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.08); transform: translateY(-2px); }
-  .feature-icon {
-    width: 44px; height: 44px; border-radius: 10px;
-    background: #eff6ff; display: flex; align-items: center; justify-content: center;
-    margin-bottom: 20px; font-size: 20px;
-  }
-  .feature-card.accent .feature-icon { background: rgba(255,255,255,.15); }
-  .feature-card.accent-gold .feature-icon { background: rgba(240,165,0,.15); }
-  .feature-card h3 {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: 20px; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2;
-  }
-  .feature-card p { font-size: 15px; color: var(--ink-soft); line-height: 1.65; }
-  .feature-card.accent { background: var(--blue); color: #fff; border-color: var(--blue); }
-  .feature-card.accent h3, .feature-card.accent p { color: #fff; }
-  .feature-card.accent p { opacity: .8; }
-
-  /* ─── How it works ──────────────────────────────────────────────── */
-  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
-  .step-item { position: relative; padding-left: 0; }
-  .step-num {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: 13px; letter-spacing: 0.06em; color: var(--gold);
-    margin-bottom: 16px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .step-num::before {
-    content: ""; display: inline-block;
-    width: 28px; height: 2px; background: var(--gold);
-  }
-  .step-item h4 {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: 20px; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2;
-  }
-  .step-item p { font-size: 15px; color: var(--ink-soft); line-height: 1.65; }
-  .steps-divider {
-    border: none; border-top: 1px solid var(--border); margin: 0 0 56px;
-  }
-
-  /* ─── CTA section ───────────────────────────────────────────────── */
-  .cta-section {
-    background: var(--blue-deep); color: #fff;
-    padding: 96px 0;
-  }
-  .cta-section .section-label { color: var(--gold); }
-  .cta-section .section-label::before { background: var(--gold); }
-  .cta-section h2.h2 { color: #fff; }
-  .cta-section .section-intro { color: rgba(255,255,255,.7); }
-  .cta-section .waitlist-form {
-    background: rgba(255,255,255,.06);
-    border-color: rgba(255,255,255,.2);
-    box-shadow: none;
-    margin-top: 36px;
-  }
-  .cta-section .waitlist-form:focus-within {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(240,165,0,.2);
-  }
-  .cta-section .waitlist-form input { color: #fff; }
-  .cta-section .waitlist-form input::placeholder { color: rgba(255,255,255,.4); }
-  .cta-section .waitlist-form button { background: var(--gold); color: var(--ink); }
-  .cta-section .waitlist-form button:hover { background: #d4920a; }
-  .cta-section .form-trust span { color: rgba(255,255,255,.5); }
-  .cta-section .form-trust svg { color: var(--gold); }
-  .cta-section .form-msg.success { color: var(--gold); }
-  .cta-section .form-msg.error { color: #fca5a5; }
-
-  /* ─── Footer ────────────────────────────────────────────────────── */
-  footer {
-    background: var(--ink); color: #fff; padding: 64px 0 32px;
-  }
-  .foot-grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
-    padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1);
-  }
-  .foot-logo {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: 36px; letter-spacing: -0.04em; color: #fff; margin-bottom: 12px;
-  }
-  .foot-logo span { color: var(--gold); }
-  .foot-tag { color: rgba(255,255,255,.5); font-size: 14px; line-height: 1.6; max-width: 280px; }
-  .foot-grid h5 {
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.1em; color: rgba(255,255,255,.4); margin-bottom: 16px;
-  }
-  .foot-grid ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .foot-grid a { color: rgba(255,255,255,.7); font-size: 14px; transition: color .15s; }
-  .foot-grid a:hover { color: #fff; }
-  .foot-bottom {
-    padding-top: 28px; display: flex; align-items: center;
-    justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    font-size: 13px; color: rgba(255,255,255,.35);
-  }
-
-  /* ─── Scroll reveal ─────────────────────────────────────────────── */
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.in { opacity: 1; transform: none; }
-  .reveal.d1 { transition-delay: .07s; }
-  .reveal.d2 { transition-delay: .14s; }
-  .reveal.d3 { transition-delay: .21s; }
-
-  /* ─── Responsive ────────────────────────────────────────────────── */
-  @media (max-width: 900px) {
-    .nav-links, .nav-cta { display: none; }
-    .hamburger { display: flex; }
-    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-    .hero-stats { flex-direction: row; gap: 12px; flex-wrap: wrap; }
-    .stat-card { flex: 1 1 calc(50% - 12px); }
-    .features-grid { grid-template-columns: 1fr; }
-    .steps-grid { grid-template-columns: 1fr; gap: 36px; }
-    .foot-grid { grid-template-columns: 1fr 1fr; }
-    .section { padding: 64px 0; }
-    .hero { padding: 64px 0 56px; }
-  }
-  @media (max-width: 560px) {
-    .wrap { padding: 0 20px; }
-    .nav-row { padding: 0 20px; }
-    .foot-grid { grid-template-columns: 1fr; }
-    .stat-card { flex: 1 1 100%; }
-    .waitlist-form { flex-direction: column; border-radius: 10px; }
-    .waitlist-form button { margin: 0 4px 4px; border-radius: 7px; text-align: center; }
-    .features-head { flex-direction: column; }
-  }
-</style>
+<meta name="description" content="A verified student-to-student marketplace for Canadian universities. Buy, sell, rent — on campus." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ─── Nav ──────────────────────────────────────────────────────── -->
-<nav class="top">
-  <div class="nav-row">
+<!-- ─── Nav ─────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
     <a href="/" class="logo">
-      Loot<span class="logo-dot"></span>
+      <span class="logo-mark">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 2h5v12h7v4H4V2z" fill="#f4ede0"/></svg>
+      </span>
+      <span class="logo-word">Loot</span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="how-it-works.html">How it works</a></li>
       <li><a href="schools.html">Schools</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="trust.html">Trust & Safety</a></li>
       <li><a href="faq.html">FAQ</a></li>
+      <li><a href="ambassador.html">Ambassadors</a></li>
+      <li><a href="#waitlist" class="btn-pill">Join Waitlist</a></li>
     </ul>
-    <a href="#join" class="nav-cta">Join waitlist</a>
-    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="how-it-works.html">How it works</a>
-    <a href="schools.html">Schools</a>
-    <a href="about.html">About</a>
-    <a href="trust.html">Trust & Safety</a>
-    <a href="faq.html">FAQ</a>
-    <a href="#join">Join waitlist</a>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
   </div>
 </nav>
 
-<!-- ─── Hero ─────────────────────────────────────────────────────── -->
+<!-- ─── Hero ────────────────────────────────────────────── -->
 <section class="hero">
-  <div class="wrap">
+  <div class="container">
     <div class="hero-badge reveal">
-      <span class="pulse"></span>
-      Launching Fall 2026 · McMaster University
+      <span class="dot"></span>
+      Launching <strong style="margin-left:4px;">McMaster</strong>&nbsp;· Fall 2026
     </div>
 
-    <div class="hero-grid">
-      <div>
-        <h1 class="hero-title reveal">
-          The student marketplace<br>built for <span class="highlight">Canada.</span>
-        </h1>
-        <p class="hero-sub reveal d1">
-          Buy, sell, and rent with verified students at your university.
-          <strong>.ca emails only</strong> — every person on Loot is a real, enrolled Canadian student.
-        </p>
+    <h1 class="reveal d1">
+      Buy. Sell.<br/><span class="accent">Rent.</span><br/>On <span class="underline">campus.</span>
+    </h1>
 
-        <form class="waitlist-form reveal d2" id="waitlistForm" novalidate>
-          <input type="email" placeholder="you@mcmaster.ca" required aria-label="Your .ca email">
-          <button type="submit">Get early access</button>
-        </form>
-        <div class="form-trust reveal d3">
-          <span>
-            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            .ca emails only
-          </span>
-          <span>
-            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            No spam
-          </span>
-          <span>
-            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Free forever
-          </span>
-        </div>
-        <div class="form-msg" id="formMsg1"></div>
-      </div>
+    <p class="hero-sub reveal d2">
+      A marketplace where every seller is a <strong>verified Canadian student</strong>.
+      No bots, no creeps, no shipping nightmares — just classmates handing things off between classes.
+    </p>
 
-      <div class="hero-stats reveal d2">
-        <div class="stat-card">
-          <div class="num">.ca only</div>
-          <div class="lbl">Verified university email required to sign up</div>
-        </div>
-        <div class="stat-card accent">
-          <div class="num">45+</div>
-          <div class="lbl">Ontario universities and colleges at launch</div>
-        </div>
-        <div class="stat-card">
-          <div class="num">$0</div>
-          <div class="lbl">No fees, commissions, or listings limits. Ever.</div>
-        </div>
+    <form class="signup-form reveal d3" id="heroForm" novalidate>
+      <input type="email" required placeholder="you@university.ca" aria-label="Email address" />
+      <button type="submit" class="btn-pill">Join waitlist</button>
+    </form>
+    <div class="signup-success" id="heroSuccess">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      You're on the list. We'll email when Loot opens at your school.
+    </div>
+    <div class="signup-error" id="heroError">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg>
+      Please use your university .ca email
+    </div>
+    <div class="signup-note reveal d3" style="display:flex;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><path d="M9 12l2 2 4-4"/></svg>
+      Free forever. No spam.
+    </div>
+
+    <div class="hero-stores reveal d4">
+      <div class="hero-stores-row">
+        <a class="store-badge" aria-disabled="true" onclick="event.preventDefault()" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35-4.88-5.02-4.16-12.68 1.38-12.96 1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.07zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <span class="sb-text"><span class="sb-pre">Download on the</span><span class="sb-main">App Store</span></span>
+        </a>
+        <a class="store-badge" aria-disabled="true" onclick="event.preventDefault()" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.4c-.37.2-.6.6-.6 1.07v17.06c0 .47.23.87.6 1.07L13.55 12 3.6 2.4z"/><path d="M17.4 8.95L14.5 11.42 14.5 12.58 17.4 15.05 20.55 13.27c.96-.54.96-1.99 0-2.54L17.4 8.95z" opacity="0.85"/><path d="M13.55 12L3.6 22.6c.13.07.27.11.42.11.27 0 .55-.07.78-.21l11.6-6.6L13.55 12z" opacity="0.65"/><path d="M16.4 8.7L4.8 2.1c-.39-.22-.84-.21-1.2 0L13.55 12 16.4 8.7z" opacity="0.75"/></svg>
+          <span class="sb-text"><span class="sb-pre">Get it on</span><span class="sb-main">Google Play</span></span>
+        </a>
       </div>
+      <span class="hero-stores-note">Mobile apps coming Fall 2026</span>
+    </div>
+  </div>
+
+  <div class="hero-chips" aria-hidden="true">
+    <div class="chip">
+      <div class="swatch">ECON<br/>1B03</div>
+      <div class="meta"><strong>Mankiw, 8e</strong><span>Jordan P. · 0.4 km</span></div>
+      <div class="price">$45</div>
+    </div>
+    <div class="chip">
+      <div class="swatch gold">M1</div>
+      <div class="meta"><strong>MacBook Air</strong><span>Sam O. · MUSC</span></div>
+      <div class="price">$720</div>
+    </div>
+    <div class="chip">
+      <div class="swatch pine">TI</div>
+      <div class="meta"><strong>TI-Nspire CX</strong><span>Priya S. · /week</span></div>
+      <div class="price">$12</div>
     </div>
   </div>
 </section>
 
-<!-- ─── Ticker ────────────────────────────────────────────────────── -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>45+ Ontario Universities</span>
-    <span>Verified Students Only</span>
-    <span>Textbooks</span>
-    <span>Electronics</span>
-    <span>Furniture</span>
-    <span>Free to list</span>
-    <span>Zero fees</span>
-    <span>Campus pickup</span>
-    <span>45+ Ontario Universities</span>
-    <span>Verified Students Only</span>
-    <span>Textbooks</span>
-    <span>Electronics</span>
-    <span>Furniture</span>
-    <span>Free to list</span>
-    <span>Zero fees</span>
-    <span>Campus pickup</span>
+<!-- ─── Marquee ─────────────────────────────────────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">45+ universities across Canada</span>
+    <span class="marquee-item">100% verified students</span>
+    <span class="marquee-item">Zero strangers</span>
+    <span class="marquee-item">Textbooks</span>
+    <span class="marquee-item">Furniture</span>
+    <span class="marquee-item">Electronics</span>
+    <span class="marquee-item">Course materials</span>
+    <span class="marquee-item">45+ universities across Canada</span>
+    <span class="marquee-item">100% verified students</span>
+    <span class="marquee-item">Zero strangers</span>
+    <span class="marquee-item">Textbooks</span>
+    <span class="marquee-item">Furniture</span>
+    <span class="marquee-item">Electronics</span>
+    <span class="marquee-item">Course materials</span>
   </div>
 </div>
 
-<!-- ─── Features ─────────────────────────────────────────────────── -->
-<section class="section features-section" id="features">
-  <div class="wrap">
-    <div class="features-head">
+<!-- ─── What's on Loot ───────────────────────────────────── -->
+<section class="section section-white" id="categories">
+  <div class="container">
+    <div class="cat-head reveal">
       <div>
-        <div class="section-label reveal">Why Loot</div>
-        <h2 class="h2 reveal">Built for students.<br>Not for the internet.</h2>
+        <span class="section-tag">What's on Loot</span>
+        <h2>Six things students<br/>actually swap.</h2>
       </div>
-      <p class="section-intro reveal d1">
-        Kijiji and Facebook Marketplace weren't built for campus. Loot is — every listing, every seller, every meetup happens within your university.
-      </p>
+      <p class="lead" style="color:var(--muted);font-size:var(--lead);max-width:36ch;">From last semester's textbooks to the futon you can't fit in your dorm anymore — if a student has it, you'll find it here.</p>
     </div>
+    <div class="cat-grid">
+      <a href="textbooks.html" class="cat-card reveal">
+        <span class="cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a1 1 0 0 1 1-1h11v17H5a1 1 0 0 1-1-1z"/><path d="M8 4v16M16 8h4v12H6"/></svg></div>
+        <h3>Textbooks</h3>
+        <p>Course textbooks, study guides, lab manuals — search by course code.</p>
+      </a>
+      <a href="electronics.html" class="cat-card reveal d1">
+        <span class="cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20M10 19l1-2h2l1 2"/></svg></div>
+        <h3>Electronics</h3>
+        <p>Laptops, monitors, graphing calcs, headphones, that ring light you used twice.</p>
+      </a>
+      <a href="furniture.html" class="cat-card reveal d2">
+        <span class="cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3M3 14a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2M3 14v-3a2 2 0 0 1 4 0v1M21 14v-3a2 2 0 0 0-4 0v1"/><path d="M5 18v2M19 18v2"/></svg></div>
+        <h3>Furniture</h3>
+        <p>Move-in deals, move-out steals — desks, chairs, futons, lamps, mini fridges.</p>
+      </a>
+      <a href="clothing.html" class="cat-card reveal">
+        <span class="cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 3 4-3 5 3-2 4h-2v11H7V10H5L3 6l5-3z"/></svg></div>
+        <h3>Clothing</h3>
+        <p>Sample sales, varsity gear, formals you wore once. Real students, real closets.</p>
+      </a>
+      <a href="rentals.html" class="cat-card reveal d1">
+        <span class="cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l2 2M19 4l2 2"/></svg></div>
+        <h3>Rentals</h3>
+        <p>Calculators by the week, monitors for co-op terms, formal wear by the night.</p>
+      </a>
+      <a href="trades.html" class="cat-card reveal d2">
+        <span class="cat-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg></div>
+        <h3>Trades</h3>
+        <p>No money, no problem. Swap textbooks, gear, or clothes for stuff you actually want.</p>
+      </a>
+    </div>
+  </div>
+</section>
 
+<!-- ─── Why Loot ─────────────────────────────────────────── -->
+<section class="section section-cream" id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">Why Loot</span>
+      <h2>Built for campus.<br/>Not for randos.</h2>
+      <p>Generic marketplaces weren't designed for people sharing buildings. Loot is.</p>
+    </div>
     <div class="features-grid">
-      <div class="feature-card reveal">
-        <div class="feature-icon">🔒</div>
+      <article class="feature-card reveal">
+        <div class="num">01</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <h3>Verified students only</h3>
-        <p>Sign up with your .ca university email. Every user is confirmed as a real, enrolled student at a Canadian institution. No strangers, no bots.</p>
-      </div>
-      <div class="feature-card accent reveal d1">
-        <div class="feature-icon">📍</div>
-        <h3>Campus-local listings</h3>
-        <p>Browse what's available at your university. Meet at the library, student centre, or quad — not a parking lot across town.</p>
-      </div>
-      <div class="feature-card reveal d2">
-        <div class="feature-icon">📚</div>
+        <p>Sign up with your .ca university email, re-verify once a year. Every Loot user is a real classmate — no graduates, no outsiders.</p>
+      </article>
+      <article class="feature-card reveal d1">
+        <div class="num">02</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14l-1 11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 9z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/><path d="M9 14h6"/></svg></div>
+        <h3>Buy, sell &amp; rent</h3>
+        <p>One app for selling your old textbooks, renting out your calculator, or swapping that jacket. Free to list, free to browse.</p>
+      </article>
+      <article class="feature-card reveal d2">
+        <div class="num">03</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/><path d="M8 11h6M11 8v6" opacity="0.5"/></svg></div>
         <h3>Search by course code</h3>
-        <p>Looking for your ECON 1B03 textbook? Search the course code and find every copy available on your campus, ranked by proximity.</p>
+        <p>Type "ECON 1B03" and see every relevant textbook on campus, sorted by how close the seller is to you.</p>
+      </article>
+      <article class="feature-card reveal d3">
+        <div class="num">04</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></svg></div>
+        <h3>Ratings &amp; reviews</h3>
+        <p>Every meetup ends with a quick rating. Build a rep across your years on campus — flakes get filtered fast.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── How it works ─────────────────────────────────────── -->
+<section class="section section-white" id="how">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">How it works</span>
+      <h2>Three steps.<br/>No middleman.</h2>
+      <p>Loot doesn't hold your money or touch your stuff. We just make sure you're meeting another verified student.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <h3>Sign up with your university email</h3>
+        <p>Verify with your .ca email when you sign up, then once a year after that. Keeps the marketplace student-only as people graduate.</p>
       </div>
-      <div class="feature-card reveal d3">
-        <div class="feature-icon">💸</div>
-        <h3>Zero fees. Always.</h3>
-        <p>No listing fees, no commission, no "pro" plan. You keep 100% of every sale. We're not in the business of skimming your beer money.</p>
+      <div class="step reveal d1">
+        <span class="num">02</span>
+        <h3>Browse or post a listing</h3>
+        <p>Snap a few photos, set a price (or pick "open to trade"), tag the course code. Done in 30 seconds.</p>
+      </div>
+      <div class="step reveal d2">
+        <span class="num">03</span>
+        <h3>Meet on campus &amp; close the deal</h3>
+        <p>Chat in the app, meet at MUSC or the library, pay by e-transfer or cash. Rate each other after.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── How it works ─────────────────────────────────────────────── -->
-<section class="section" id="how">
-  <div class="wrap">
-    <div class="section-label reveal">How it works</div>
-    <h2 class="h2 reveal">Three steps to your next sale.</h2>
-    <hr class="steps-divider">
-    <div class="steps-grid">
-      <div class="step-item reveal">
-        <div class="step-num">01</div>
-        <h4>Verify with your .ca email</h4>
-        <p>Sign up with your university or college email. We confirm your enrollment in seconds — no ID upload, no waiting period.</p>
-      </div>
-      <div class="step-item reveal d1">
-        <div class="step-num">02</div>
-        <h4>List or browse</h4>
-        <p>Post a listing in 30 seconds — photo, price, title. Or browse your campus feed for textbooks, electronics, furniture, and more.</p>
-      </div>
-      <div class="step-item reveal d2">
-        <div class="step-num">03</div>
-        <h4>Meet on campus, close the deal</h4>
-        <p>Message the seller in the app, agree on a campus meetup spot, and pay however you both want. Loot never touches the money.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CTA ───────────────────────────────────────────────────────── -->
-<section class="cta-section" id="join">
-  <div class="wrap">
-    <div class="section-label reveal">Early access</div>
-    <h2 class="h2 reveal">Be first at your campus.</h2>
-    <p class="section-intro reveal d1">
-      We're launching at McMaster in Fall 2026 and expanding across Ontario. The first 100 students per campus get a permanent Founder badge — early access, first pick of every move-out drop.
-    </p>
-
-    <form class="waitlist-form reveal d2" id="waitlistForm2" novalidate>
-      <input type="email" placeholder="you@mcmaster.ca" required aria-label="Your .ca email">
-      <button type="submit">Join waitlist</button>
+<!-- ─── CTA ──────────────────────────────────────────────── -->
+<section class="section section-pine" id="waitlist">
+  <div class="container cta-inner">
+    <h2 class="reveal">Ready to <span class="accent">loot?</span></h2>
+    <p class="reveal d1">Drop your .ca email and we'll let you in the second Loot launches at your school. Founding members get free posts for life.</p>
+    <form class="signup-form reveal d2" id="ctaForm" novalidate style="max-width:460px;margin:0 auto;">
+      <input type="email" required placeholder="you@university.ca" aria-label="Email address" />
+      <button type="submit" class="btn-pill">Get early access</button>
     </form>
-    <div class="form-trust reveal d3">
-      <span>
-        <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Founder badge for first 100
-      </span>
-      <span>
-        <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        No spam
-      </span>
-      <span>
-        <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L5 9L10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        .ca emails only
-      </span>
+    <div class="signup-success" id="ctaSuccess">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      You're in. Welcome to Loot.
     </div>
-    <div class="form-msg" id="formMsg2"></div>
+    <div class="signup-error" id="ctaError">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg>
+      Please use your university .ca email
+    </div>
+    <div class="cta-note reveal d3">Pinky-promise no spam. Unsubscribe in one click.</div>
   </div>
 </section>
 
-<!-- ─── Footer ────────────────────────────────────────────────────── -->
+<!-- ─── Footer ───────────────────────────────────────────── -->
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-logo">Loot<span>.</span></div>
-        <p class="foot-tag">Your campus. Your marketplace. Built for every .ca student in Canada.</p>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo logo-dark">
+          <span class="logo-mark"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 2h5v12h7v4H4V2z" fill="#f4ede0"/></svg></span>
+          <span class="logo-word">Loot</span>
+        </a>
+        <p class="footer-tagline">Starting in Ontario · Expanding across Canada.</p>
       </div>
-      <div>
-        <h5>Product</h5>
-        <ul>
-          <li><a href="how-it-works.html">How it works</a></li>
-          <li><a href="schools.html">Schools</a></li>
-          <li><a href="#join">Waitlist</a></li>
-        </ul>
+      <div class="footer-col">
+        <p class="footer-col-title">Product</p>
+        <nav class="footer-col-links">
+          <a href="how-it-works.html">How it works</a>
+          <a href="schools.html">Schools</a>
+          <a href="buyer-protection.html">Buyer Protection</a>
+          <a href="payments.html">Payments</a>
+        </nav>
       </div>
-      <div>
-        <h5>Company</h5>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="trust.html">Trust & Safety</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="mailto:support@lootapp.ca">Contact</a></li>
-        </ul>
+      <div class="footer-col">
+        <p class="footer-col-title">Company</p>
+        <nav class="footer-col-links">
+          <a href="about.html">About</a>
+          <a href="trust.html">Trust &amp; Safety</a>
+          <a href="faq.html">FAQ</a>
+          <a href="ambassador.html">Ambassadors</a>
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="mailto:support@lootapp.ca">support@lootapp.ca</a>
+        </nav>
       </div>
-      <div>
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-        </ul>
+      <div class="footer-col">
+        <p class="footer-col-title">Categories</p>
+        <nav class="footer-col-links">
+          <a href="textbooks.html">Textbooks</a>
+          <a href="electronics.html">Electronics</a>
+          <a href="furniture.html">Furniture</a>
+          <a href="clothing.html">Clothing</a>
+          <a href="rentals.html">Rentals</a>
+          <a href="trades.html">Trades</a>
+        </nav>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Loot Marketplace Inc. · Toronto, ON</span>
-      <span>Made by students, for students</span>
+    <div class="footer-bottom">
+      <small>© 2026 Loot. Built for Canadian students.</small>
+      <span class="footer-mark">Made on campus</span>
     </div>
   </div>
 </footer>
 
-<script>
-  // Hamburger
-  const ham = document.getElementById('hamburger');
-  const mm = document.getElementById('mobileMenu');
-  ham.addEventListener('click', () => { const o = mm.classList.toggle('open'); ham.setAttribute('aria-expanded', String(o)); });
-  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
-
-  // Scroll reveal
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // Email form
-  function wireForm(formId, msgId) {
-    const form = document.getElementById(formId);
-    const msg = document.getElementById(msgId);
-    if (!form || !msg) return;
-    const input = form.querySelector('input[type=email]');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const v = (input.value || '').trim();
-      if (!v) { msg.className = 'form-msg error'; msg.textContent = 'Please enter your campus email.'; input.focus(); return; }
-      if (!/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.ca$/i.test(v)) {
-        msg.className = 'form-msg error'; msg.textContent = 'Please use your .ca university email (e.g. you@mcmaster.ca).'; input.focus(); return;
-      }
-      msg.className = 'form-msg success'; msg.textContent = "✓ You're on the list. We'll email you when your campus goes live.";
-      input.value = ''; input.blur();
-    });
-    input.addEventListener('input', () => { if (msg.classList.contains('error')) { msg.className = 'form-msg'; msg.textContent = ''; } });
-  }
-  wireForm('waitlistForm', 'formMsg1');
-  wireForm('waitlistForm2', 'formMsg2');
-</script>
+<script src="nav.js" defer></script>
 </body>
 </html>
