@@ -24,6 +24,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="how-it-works.html">How it works</a></li>
       <li><a href="schools.html">Schools</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="ambassador.html">Ambassadors</a></li>
@@ -66,7 +67,7 @@
     </div>
     <div class="signup-note reveal d3" style="display:flex;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><path d="M9 12l2 2 4-4"/></svg>
-      Free forever. No spam.
+      Free to list, browse, and message.
     </div>
 
     <div class="hero-stores reveal d4">
@@ -193,7 +194,7 @@
         <div class="num">02</div>
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14l-1 11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 9z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/><path d="M9 14h6"/></svg></div>
         <h3>Buy, sell &amp; rent</h3>
-        <p>One app for selling your old textbooks, renting out your calculator, or swapping that jacket. Free to list, free to browse.</p>
+        <p>One app for selling textbooks, renting out your calculator, or swapping a jacket. Free to list — up to 10 active listings on the free plan.</p>
       </article>
       <article class="feature-card reveal d2">
         <div class="num">03</div>
@@ -217,7 +218,7 @@
     <div class="section-head reveal">
       <span class="section-tag">How it works</span>
       <h2>Three steps.<br/>No middleman.</h2>
-      <p>Verify with your school email, find what you need on campus, and pay through Loot when you're ready. Every in-app payment runs through Stripe and includes buyer protection.</p>
+      <p>Verify with your school email, find what you need on campus, and pay through Loot when you're ready. Every in-app payment includes an 8% transaction fee and buyer protection.</p>
     </div>
     <div class="steps">
       <div class="step reveal">
@@ -233,7 +234,7 @@
       <div class="step reveal d2">
         <span class="num">03</span>
         <h3>Meet on campus &amp; pay through Loot</h3>
-        <p>Chat in the app, meet at MUSC or the library to inspect the item, then pay at checkout through Loot. Stripe holds your payment until you confirm — covered by buyer protection. Rate each other after.</p>
+        <p>Chat in the app, meet at MUSC or the library to inspect the item, then pay through Loot. Stripe holds your payment until you confirm. Buyer protection is included. Rate each other after.</p>
       </div>
     </div>
   </div>
@@ -242,21 +243,90 @@
 <!-- ─── CTA ──────────────────────────────────────────────── -->
 <section class="section section-pine" id="waitlist">
   <div class="container cta-inner">
-    <h2 class="reveal">Ready to <span class="accent">loot?</span></h2>
-    <p class="reveal d1">Drop your .ca email and we'll let you in the second Loot launches at your school. Founding members get free posts for life.</p>
-    <form class="signup-form reveal d2" id="ctaForm" novalidate style="max-width:460px;margin:0 auto;">
-      <input type="email" required placeholder="you@university.ca" aria-label="Email address" />
-      <button type="submit" class="btn-pill">Get early access</button>
+    <h2 class="reveal">Join before <span class="accent">launch.</span></h2>
+    <p class="reveal d1">Loot opens at McMaster Fall 2026. Early signups get tier perks based on signup order — quiet rewards for showing up first.</p>
+
+    <div class="waitlist-tiers reveal d2">
+      <div class="waitlist-tier">
+        <span class="waitlist-tier-label">Founding 100</span>
+        <span class="waitlist-tier-range">First 100 signups</span>
+        <ul>
+          <li>Founding 100 badge on profile — permanent</li>
+          <li>Free Pro for 2 years</li>
+          <li>Zero transaction fees for 1 year</li>
+          <li>Direct Discord access with the founder</li>
+        </ul>
+      </div>
+      <div class="waitlist-tier">
+        <span class="waitlist-tier-label">Early 300</span>
+        <span class="waitlist-tier-range">Signups 101–300</span>
+        <ul>
+          <li>Early supporter badge</li>
+          <li>3 months free Pro</li>
+          <li>Zero transaction fees for 3 months</li>
+        </ul>
+      </div>
+      <div class="waitlist-tier">
+        <span class="waitlist-tier-label">Launch Crew</span>
+        <span class="waitlist-tier-range">Signups 301–500</span>
+        <ul>
+          <li>1 month free Pro</li>
+          <li>Boosted first listing</li>
+        </ul>
+      </div>
+    </div>
+
+    <form class="waitlist-form reveal d3" id="waitlistForm" novalidate>
+      <div class="waitlist-form-row">
+        <div class="waitlist-field">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" name="first_name" required autocomplete="given-name" placeholder="Hana" />
+        </div>
+        <div class="waitlist-field">
+          <label for="lastName">Last name</label>
+          <input type="text" id="lastName" name="last_name" required autocomplete="family-name" placeholder="Kim" />
+        </div>
+      </div>
+      <div class="waitlist-field">
+        <label for="universityEmail">University email</label>
+        <input type="email" id="universityEmail" name="university_email" required autocomplete="email" placeholder="you@university.ca" />
+      </div>
+      <div class="waitlist-field">
+        <label for="personalEmail">Personal email</label>
+        <input type="email" id="personalEmail" name="personal_email" required autocomplete="email" placeholder="you@gmail.com" />
+      </div>
+      <div class="waitlist-field">
+        <label for="university">University</label>
+        <input type="text" id="university" name="university" required placeholder="McMaster University" />
+      </div>
+      <div class="waitlist-field">
+        <label for="pronouns">Pronouns <span>(optional)</span></label>
+        <input type="text" id="pronouns" name="pronouns" placeholder="she/her" />
+      </div>
+      <div class="waitlist-field">
+        <label for="referral">How did you hear about Loot?</label>
+        <select id="referral" name="referral" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="friend">Friend or classmate</option>
+          <option value="instagram">Instagram</option>
+          <option value="reddit">Reddit</option>
+          <option value="discord">Discord</option>
+          <option value="campus">Campus flyer or event</option>
+          <option value="search">Search</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-pill">Join waitlist</button>
     </form>
-    <div class="signup-success" id="ctaSuccess">
+    <div class="signup-success" id="waitlistSuccess">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
-      You're in. Welcome to Loot.
+      You're on the list. We'll email you when Loot opens at your school.
     </div>
-    <div class="signup-error" id="ctaError">
+    <div class="signup-error" id="waitlistError">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg>
-      Please use your university .ca email
+      Check your details — university email must end in .ca
     </div>
-    <div class="cta-note reveal d3">Pinky-promise no spam. Unsubscribe in one click.</div>
+    <div class="cta-note reveal d4">No spam. Unsubscribe in one click.</div>
   </div>
 </section>
 
@@ -276,6 +346,7 @@
         <nav class="footer-col-links">
           <a href="how-it-works.html">How it works</a>
           <a href="schools.html">Schools</a>
+          <a href="pricing.html">Pricing</a>
           <a href="buyer-protection.html">Buyer Protection</a>
           <a href="payments.html">Payments</a>
         </nav>

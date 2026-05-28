@@ -59,7 +59,41 @@ function handleForm(formId, successId, errorId) {
     success && success.classList.add('show');
   });
 }
+
+function handleWaitlistForm(formId, successId, errorId) {
+  const form    = document.getElementById(formId);
+  const success = document.getElementById(successId);
+  const error   = document.getElementById(errorId);
+  if (!form) return;
+
+  form.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('input', () => error && error.classList.remove('show'));
+    el.addEventListener('change', () => error && error.classList.remove('show'));
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    error && error.classList.remove('show');
+
+    const uniEmail = form.querySelector('[name="university_email"]');
+    const personalEmail = form.querySelector('[name="personal_email"]');
+    const uniVal = uniEmail ? uniEmail.value.trim().toLowerCase() : '';
+    const personalVal = personalEmail ? personalEmail.value.trim().toLowerCase() : '';
+    const emailOk = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    const requiredOk = [...form.querySelectorAll('[required]')].every(el => el.value.trim());
+
+    if (!requiredOk || !emailOk(uniVal) || !/\.ca$/.test(uniVal) || !emailOk(personalVal)) {
+      error && error.classList.add('show');
+      return;
+    }
+
+    form.style.display = 'none';
+    success && success.classList.add('show');
+  });
+}
+
 handleForm('heroForm', 'heroSuccess', 'heroError');
+handleWaitlistForm('waitlistForm', 'waitlistSuccess', 'waitlistError');
 handleForm('ctaForm',  'ctaSuccess',  'ctaError');
 
 // ─── FAQ accordion ───────────────────────────────────────
