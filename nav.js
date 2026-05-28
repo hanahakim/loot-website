@@ -3,6 +3,33 @@ const nav = document.getElementById('nav');
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
 
+(function brandNavWaitlist() {
+  const navInner = document.querySelector('.nav-inner');
+  if (!navInner) return;
+  const logo = navInner.querySelector('.logo');
+  const waitlist = navInner.querySelector('.nav-links a.btn-pill');
+  if (!logo || !waitlist || navInner.querySelector('.nav-brand')) return;
+
+  const brand = document.createElement('div');
+  brand.className = 'nav-brand';
+  logo.parentNode.insertBefore(brand, logo);
+  brand.appendChild(logo);
+
+  waitlist.classList.remove('btn-pill');
+  waitlist.classList.add('btn-brand');
+  const logoSvg = logo.querySelector('.logo-mark svg');
+  if (logoSvg && !waitlist.querySelector('.logo-mark')) {
+    const mark = document.createElement('span');
+    mark.className = 'logo-mark logo-mark-sm';
+    mark.setAttribute('aria-hidden', 'true');
+    mark.appendChild(logoSvg.cloneNode(true));
+    waitlist.prepend(mark);
+  }
+
+  brand.appendChild(waitlist);
+  waitlist.closest('li')?.remove();
+})();
+
 const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 8);
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
