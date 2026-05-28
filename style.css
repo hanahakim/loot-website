@@ -77,19 +77,13 @@ a { color: inherit; text-decoration: none; }
 /* On dark backgrounds */
 .logo-dark .logo-word { color: var(--cream); }
 
-.logo-mark-sm {
-  width: 28px; height: 28px;
-  border-radius: 7px;
-}
-.logo-mark-sm svg { width: 14px; height: 14px; }
-
 .btn-brand {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background: var(--green);
   color: var(--cream);
-  padding: 12px 24px 12px 12px;
+  padding: 12px 24px;
   border-radius: 999px;
   box-shadow: inset 0 0 0 2px var(--gold);
   border: none;

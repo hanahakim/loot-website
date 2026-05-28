@@ -4,22 +4,10 @@ const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
 
 (function brandNavWaitlist() {
-  const navInner = document.querySelector('.nav-inner');
-  if (!navInner) return;
-  const logo = navInner.querySelector('.logo');
-  const waitlist = navInner.querySelector('.nav-links a.btn-pill');
-  if (!logo || !waitlist || waitlist.classList.contains('btn-brand')) return;
-
+  const waitlist = document.querySelector('.nav-links a.btn-pill');
+  if (!waitlist || waitlist.classList.contains('btn-brand')) return;
   waitlist.classList.remove('btn-pill');
   waitlist.classList.add('btn-brand');
-  const logoSvg = logo.querySelector('.logo-mark svg');
-  if (logoSvg && !waitlist.querySelector('.logo-mark')) {
-    const mark = document.createElement('span');
-    mark.className = 'logo-mark logo-mark-sm';
-    mark.setAttribute('aria-hidden', 'true');
-    mark.appendChild(logoSvg.cloneNode(true));
-    waitlist.prepend(mark);
-  }
 })();
 
 const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 8);
