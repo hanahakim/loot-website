@@ -3,11 +3,18 @@ const nav = document.getElementById('nav');
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
 
-(function brandNavWaitlist() {
-  const waitlist = document.querySelector('.nav-links a.btn-pill');
-  if (!waitlist || waitlist.classList.contains('btn-brand')) return;
+(function setupNavCta() {
+  const navInner = document.querySelector('.nav-inner');
+  if (!navInner) return;
+  const waitlist = navInner.querySelector('.nav-links a.btn-pill, .nav-links a.btn-brand');
+  const burger = navInner.querySelector('.nav-burger');
+  if (!waitlist || navInner.querySelector('.nav-cta')) return;
+
   waitlist.classList.remove('btn-pill');
-  waitlist.classList.add('btn-brand');
+  waitlist.classList.add('btn-brand', 'nav-cta');
+  if (burger) navInner.insertBefore(waitlist, burger);
+  else navInner.appendChild(waitlist);
+  waitlist.closest('li')?.remove();
 })();
 
 const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 8);
@@ -96,7 +103,6 @@ function handleWaitlistForm(formId, successId, errorId) {
   });
 }
 
-handleWaitlistForm('heroWaitlistForm', 'heroWaitlistSuccess', 'heroWaitlistError');
 handleWaitlistForm('waitlistForm', 'waitlistSuccess', 'waitlistError');
 handleForm('ctaForm',  'ctaSuccess',  'ctaError');
 
