@@ -44,7 +44,77 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// ─── Waitlist email forms ────────────────────────────────
+// ─── Waitlist API ────────────────────────────────────────
+const LOOT_CONFIG = window.LOOT_CONFIG || {
+  supabaseUrl: 'https://oaqynilpclowkulomjjw.supabase.co',
+  supabaseAnonKey: 'sb_publishable_4Ug4FvMfkO2jCbTRxzZuZQ_elrqWWIA',
+};
+
+const TIER_LABELS = {
+  founding_100: 'Founding 100',
+  early_300: 'Early 300',
+  launch_crew: 'Launch Crew',
+  standard: 'Waitlist',
+};
+
+function tierMessage(tier) {
+  const label = TIER_LABELS[tier] || TIER_LABELS.standard;
+  if (tier === 'founding_100' || tier === 'early_300' || tier === 'launch_crew') {
+    return `You're on the list — ${label} tier unlocked. We'll email you when Loot opens at your school.`;
+  }
+  return "You're on the list. We'll email you when Loot opens at your school.";
+}
+
+async function submitWaitlist(payload) {
+  const { supabaseUrl, supabaseAnonKey } = LOOT_CONFIG;
+  const res = await fetch(`${supabaseUrl}/functions/v1/waitlist-signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${supabaseAnonKey}`,
+      apikey: supabaseAnonKey,
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const err = new Error(data.error || 'Request failed');
+    err.code = data.code;
+    throw err;
+  }
+  return data;
+}
+
+function showWaitlistSuccess(form, success, error, tier) {
+  form.style.display = 'none';
+  if (success) {
+    const textNode = [...success.childNodes].find(
+      (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim(),
+    );
+    if (textNode) textNode.textContent = ' ' + tierMessage(tier);
+    success.classList.add('show');
+  }
+  error && error.classList.remove('show');
+}
+
+function showWaitlistError(error, message) {
+  if (!error) return;
+  const textNode = [...error.childNodes].find(
+    (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim(),
+  );
+  if (textNode) textNode.textContent = ' ' + message;
+  error.classList.add('show');
+}
+
+function setFormBusy(form, busy) {
+  const btn = form.querySelector('button[type=submit]');
+  if (btn) {
+    btn.disabled = busy;
+    btn.dataset.defaultLabel = btn.dataset.defaultLabel || btn.textContent;
+    btn.textContent = busy ? 'Submitting…' : btn.dataset.defaultLabel;
+  }
+}
+
 function handleForm(formId, successId, errorId) {
   const form    = document.getElementById(formId);
   const success = document.getElementById(successId);
@@ -52,7 +122,7 @@ function handleForm(formId, successId, errorId) {
   if (!form) return;
   const input = form.querySelector('input[type=email]');
   input && input.addEventListener('input', () => error && error.classList.remove('show'));
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const val = input ? input.value.trim().toLowerCase() : '';
     error && error.classList.remove('show');
@@ -62,8 +132,25 @@ function handleForm(formId, successId, errorId) {
       error && error.classList.add('show');
       return;
     }
-    form.style.display = 'none';
-    success && success.classList.add('show');
+
+    setFormBusy(form, true);
+    try {
+      const data = await submitWaitlist({
+        university_email: val,
+        personal_email: val,
+        source: window.location.pathname.split('/').pop() || 'index.html',
+      });
+      showWaitlistSuccess(form, success, error, data.tier);
+    } catch (err) {
+      showWaitlistError(
+        error,
+        err.code === 'validation'
+          ? 'Please use your university .ca email'
+          : 'Something went wrong. Please try again.',
+      );
+    } finally {
+      setFormBusy(form, false);
+    }
   });
 }
 
@@ -78,7 +165,7 @@ function handleWaitlistForm(formId, successId, errorId) {
     el.addEventListener('change', () => error && error.classList.remove('show'));
   });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     error && error.classList.remove('show');
 
@@ -98,8 +185,32 @@ function handleWaitlistForm(formId, successId, errorId) {
       return;
     }
 
-    form.style.display = 'none';
-    success && success.classList.add('show');
+    const payload = {
+      first_name: form.querySelector('[name="first_name"]')?.value.trim(),
+      last_name: form.querySelector('[name="last_name"]')?.value.trim(),
+      university_email: uniVal,
+      personal_email: personalVal,
+      university: universitySelect.value.trim(),
+      university_other: universityOther?.value.trim() || null,
+      pronouns: form.querySelector('[name="pronouns"]')?.value.trim() || null,
+      referral: form.querySelector('[name="referral"]')?.value.trim(),
+      source: 'index.html#waitlist',
+    };
+
+    setFormBusy(form, true);
+    try {
+      const data = await submitWaitlist(payload);
+      showWaitlistSuccess(form, success, error, data.tier);
+    } catch (err) {
+      showWaitlistError(
+        error,
+        err.code === 'validation'
+          ? 'Check your details — university email must end in .ca'
+          : 'Something went wrong. Please try again.',
+      );
+    } finally {
+      setFormBusy(form, false);
+    }
   });
 }
 
