@@ -92,7 +92,7 @@ function handleWaitlistForm(formId, successId, errorId) {
   });
 }
 
-handleForm('heroForm', 'heroSuccess', 'heroError');
+handleWaitlistForm('heroWaitlistForm', 'heroWaitlistSuccess', 'heroWaitlistError');
 handleWaitlistForm('waitlistForm', 'waitlistSuccess', 'waitlistError');
 handleForm('ctaForm',  'ctaSuccess',  'ctaError');
 

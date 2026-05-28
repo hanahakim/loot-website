@@ -948,6 +948,37 @@ footer {
 .waitlist-field select option { color: var(--ink); background: var(--white); }
 .waitlist-form .btn-pill { justify-content: center; margin-top: 6px; width: 100%; }
 
+/* Light background (hero) */
+.hero-waitlist { max-width: 720px; margin-top: 8px; }
+.hero-waitlist-lead {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  line-height: 1.55;
+}
+.waitlist-tiers-light { margin-bottom: 32px; }
+.waitlist-tiers-light .waitlist-tier {
+  background: var(--white);
+  border-color: var(--line);
+  box-shadow: 0 8px 32px -12px rgba(10,124,78,0.12);
+}
+.waitlist-tiers-light .waitlist-tier-label { color: var(--ink); }
+.waitlist-tiers-light .waitlist-tier-range { color: var(--muted); }
+.waitlist-tiers-light .waitlist-tier li { color: var(--muted); }
+.waitlist-form-light .waitlist-field label { color: var(--muted); }
+.waitlist-form-light .waitlist-field input,
+.waitlist-form-light .waitlist-field select {
+  background: var(--white);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.waitlist-form-light .waitlist-field input::placeholder { color: var(--muted); opacity: 0.7; }
+.waitlist-form-light .waitlist-field input:focus,
+.waitlist-form-light .waitlist-field select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(10,124,78,0.1);
+}
+
 /* ─── Pricing comparison ─────────────────────────────────── */
 .pricing-grid {
   display: grid;

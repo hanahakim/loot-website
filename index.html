@@ -53,21 +53,87 @@
       No bots, no creeps, no shipping nightmares — just classmates handing things off between classes.
     </p>
 
-    <form class="signup-form reveal d3" id="heroForm" novalidate>
-      <input type="email" required placeholder="you@university.ca" aria-label="Email address" />
-      <button type="submit" class="btn-pill">Join waitlist</button>
-    </form>
-    <div class="signup-success" id="heroSuccess">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
-      You're on the list. We'll email when Loot opens at your school.
-    </div>
-    <div class="signup-error" id="heroError">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg>
-      Please use your university .ca email
-    </div>
-    <div class="signup-note reveal d3" style="display:flex;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><path d="M9 12l2 2 4-4"/></svg>
-      Free to list, browse, and message.
+    <div class="hero-waitlist reveal d3">
+      <p class="hero-waitlist-lead">Loot opens at McMaster Fall 2026. Your signup number sets your tier.</p>
+
+      <div class="waitlist-tiers waitlist-tiers-light">
+        <div class="waitlist-tier">
+          <span class="waitlist-tier-label">Founding 100</span>
+          <span class="waitlist-tier-range">First 100 signups</span>
+          <ul>
+            <li>Founding 100 badge on profile — permanent</li>
+            <li>Free Pro for 2 years</li>
+            <li>Direct Discord access with the founder</li>
+          </ul>
+        </div>
+        <div class="waitlist-tier">
+          <span class="waitlist-tier-label">Early 300</span>
+          <span class="waitlist-tier-range">Signups 101–300</span>
+          <ul>
+            <li>Early supporter badge</li>
+            <li>3 months free Pro</li>
+          </ul>
+        </div>
+        <div class="waitlist-tier">
+          <span class="waitlist-tier-label">Launch Crew</span>
+          <span class="waitlist-tier-range">Signups 301–500</span>
+          <ul>
+            <li>1 month free Pro</li>
+            <li>Boosted first listing</li>
+          </ul>
+        </div>
+      </div>
+
+      <form class="waitlist-form waitlist-form-light" id="heroWaitlistForm" novalidate>
+        <div class="waitlist-form-row">
+          <div class="waitlist-field">
+            <label for="heroFirstName">First name</label>
+            <input type="text" id="heroFirstName" name="first_name" required autocomplete="given-name" placeholder="Hana" />
+          </div>
+          <div class="waitlist-field">
+            <label for="heroLastName">Last name</label>
+            <input type="text" id="heroLastName" name="last_name" required autocomplete="family-name" placeholder="Kim" />
+          </div>
+        </div>
+        <div class="waitlist-field">
+          <label for="heroUniversityEmail">University email</label>
+          <input type="email" id="heroUniversityEmail" name="university_email" required autocomplete="email" placeholder="you@university.ca" />
+        </div>
+        <div class="waitlist-field">
+          <label for="heroPersonalEmail">Personal email</label>
+          <input type="email" id="heroPersonalEmail" name="personal_email" required autocomplete="email" placeholder="you@gmail.com" />
+        </div>
+        <div class="waitlist-field">
+          <label for="heroUniversity">University</label>
+          <input type="text" id="heroUniversity" name="university" required placeholder="McMaster University" />
+        </div>
+        <div class="waitlist-field">
+          <label for="heroPronouns">Pronouns <span>(optional)</span></label>
+          <input type="text" id="heroPronouns" name="pronouns" placeholder="she/her" />
+        </div>
+        <div class="waitlist-field">
+          <label for="heroReferral">How did you hear about Loot?</label>
+          <select id="heroReferral" name="referral" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="friend">Friend or classmate</option>
+            <option value="instagram">Instagram</option>
+            <option value="reddit">Reddit</option>
+            <option value="discord">Discord</option>
+            <option value="campus">Campus flyer or event</option>
+            <option value="search">Search</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-pill">Join waitlist</button>
+      </form>
+      <div class="signup-success" id="heroWaitlistSuccess">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        You're on the list. We'll email you when Loot opens at your school.
+      </div>
+      <div class="signup-error" id="heroWaitlistError">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg>
+        Check your details — university email must end in .ca
+      </div>
     </div>
 
     <div class="hero-stores reveal d4">
@@ -229,7 +295,7 @@
       <div class="step reveal d1">
         <span class="num">02</span>
         <h3>Browse or post a listing</h3>
-        <p>Snap a few photos, set a price (or pick "open to trade"), tag the course code. Done in 30 seconds.</p>
+        <p>Snap a few photos, set a price (or pick "open to trade"), tag the course code. Done in 30 seconds. Free to list.</p>
       </div>
       <div class="step reveal d2">
         <span class="num">03</span>
@@ -244,7 +310,7 @@
 <section class="section section-pine" id="waitlist">
   <div class="container cta-inner">
     <h2 class="reveal">Join before <span class="accent">launch.</span></h2>
-    <p class="reveal d1">Loot opens at McMaster Fall 2026. Early signups get tier perks based on signup order — quiet rewards for showing up first.</p>
+    <p class="reveal d1">First 100 get two years of Pro free. Every signup after that still gets something. Get in early.</p>
 
     <div class="waitlist-tiers reveal d2">
       <div class="waitlist-tier">
@@ -253,7 +319,6 @@
         <ul>
           <li>Founding 100 badge on profile — permanent</li>
           <li>Free Pro for 2 years</li>
-          <li>Zero transaction fees for 1 year</li>
           <li>Direct Discord access with the founder</li>
         </ul>
       </div>
@@ -263,7 +328,6 @@
         <ul>
           <li>Early supporter badge</li>
           <li>3 months free Pro</li>
-          <li>Zero transaction fees for 3 months</li>
         </ul>
       </div>
       <div class="waitlist-tier">
