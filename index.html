@@ -9,6 +9,51 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
+<style>
+  .launch-countdown {
+    display: flex;
+    justify-content: center;
+    gap: clamp(12px, 3vw, 24px);
+    margin: 32px auto 48px;
+    flex-wrap: wrap;
+  }
+  .countdown-unit {
+    min-width: 72px;
+    text-align: center;
+    background: rgba(244,237,224,0.08);
+    border: 1.5px solid var(--line-pine);
+    border-radius: 14px;
+    padding: 16px 12px 14px;
+  }
+  .countdown-num {
+    display: block;
+    font-family: "Outfit", sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 3rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .countdown-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244,237,224,0.55);
+  }
+  .waitlist-heading {
+    font-family: "Outfit", sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 0;
+  }
+</style>
 </head>
 <body>
 
@@ -53,90 +98,7 @@
       No bots, no creeps, no shipping nightmares — just classmates handing things off between classes.
     </p>
 
-    <div class="hero-waitlist reveal d3">
-      <p class="hero-waitlist-lead">Loot opens at McMaster Fall 2026. Your signup number sets your tier.</p>
-
-      <div class="waitlist-tiers waitlist-tiers-light">
-        <div class="waitlist-tier">
-          <span class="waitlist-tier-label">Founding 100</span>
-          <span class="waitlist-tier-range">First 100 signups</span>
-          <ul>
-            <li>Founding 100 badge on profile — permanent</li>
-            <li>Free Pro for 2 years</li>
-            <li>Direct Discord access with the founder</li>
-          </ul>
-        </div>
-        <div class="waitlist-tier">
-          <span class="waitlist-tier-label">Early 300</span>
-          <span class="waitlist-tier-range">Signups 101–300</span>
-          <ul>
-            <li>Early supporter badge</li>
-            <li>3 months free Pro</li>
-          </ul>
-        </div>
-        <div class="waitlist-tier">
-          <span class="waitlist-tier-label">Launch Crew</span>
-          <span class="waitlist-tier-range">Signups 301–500</span>
-          <ul>
-            <li>1 month free Pro</li>
-            <li>Boosted first listing</li>
-          </ul>
-        </div>
-      </div>
-
-      <form class="waitlist-form waitlist-form-light" id="heroWaitlistForm" novalidate>
-        <div class="waitlist-form-row">
-          <div class="waitlist-field">
-            <label for="heroFirstName">First name</label>
-            <input type="text" id="heroFirstName" name="first_name" required autocomplete="given-name" placeholder="Hana" />
-          </div>
-          <div class="waitlist-field">
-            <label for="heroLastName">Last name</label>
-            <input type="text" id="heroLastName" name="last_name" required autocomplete="family-name" placeholder="Kim" />
-          </div>
-        </div>
-        <div class="waitlist-field">
-          <label for="heroUniversityEmail">University email</label>
-          <input type="email" id="heroUniversityEmail" name="university_email" required autocomplete="email" placeholder="you@university.ca" />
-        </div>
-        <div class="waitlist-field">
-          <label for="heroPersonalEmail">Personal email</label>
-          <input type="email" id="heroPersonalEmail" name="personal_email" required autocomplete="email" placeholder="you@gmail.com" />
-        </div>
-        <div class="waitlist-field">
-          <label for="heroUniversity">University</label>
-          <input type="text" id="heroUniversity" name="university" required placeholder="McMaster University" />
-        </div>
-        <div class="waitlist-field">
-          <label for="heroPronouns">Pronouns <span>(optional)</span></label>
-          <input type="text" id="heroPronouns" name="pronouns" placeholder="she/her" />
-        </div>
-        <div class="waitlist-field">
-          <label for="heroReferral">How did you hear about Loot?</label>
-          <select id="heroReferral" name="referral" required>
-            <option value="" disabled selected>Select one</option>
-            <option value="friend">Friend or classmate</option>
-            <option value="instagram">Instagram</option>
-            <option value="reddit">Reddit</option>
-            <option value="discord">Discord</option>
-            <option value="campus">Campus flyer or event</option>
-            <option value="search">Search</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-pill">Join waitlist</button>
-      </form>
-      <div class="signup-success" id="heroWaitlistSuccess">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
-        You're on the list. We'll email you when Loot opens at your school.
-      </div>
-      <div class="signup-error" id="heroWaitlistError">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg>
-        Check your details — university email must end in .ca
-      </div>
-    </div>
-
-    <div class="hero-stores reveal d4">
+    <div class="hero-stores reveal d3">
       <div class="hero-stores-row">
         <a class="store-badge" aria-disabled="true" onclick="event.preventDefault()" href="#">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35-4.88-5.02-4.16-12.68 1.38-12.96 1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.07zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
@@ -306,20 +268,38 @@
   </div>
 </section>
 
-<!-- ─── CTA ──────────────────────────────────────────────── -->
+<!-- ─── Waitlist ─────────────────────────────────────────── -->
 <section class="section section-pine" id="waitlist">
   <div class="container cta-inner">
-    <h2 class="reveal">Join before <span class="accent">launch.</span></h2>
-    <p class="reveal d1">First 100 get two years of Pro free. Every signup after that still gets something. Get in early.</p>
+    <h2 class="waitlist-heading reveal">Launching McMaster. Fall 2026.</h2>
+
+    <div class="launch-countdown reveal d1" id="launchCountdown" aria-live="polite">
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cdDays">0</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cdHours">0</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cdMinutes">0</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cdSeconds">0</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
 
     <div class="waitlist-tiers reveal d2">
       <div class="waitlist-tier">
         <span class="waitlist-tier-label">Founding 100</span>
         <span class="waitlist-tier-range">First 100 signups</span>
         <ul>
-          <li>Founding 100 badge on profile — permanent</li>
+          <li>Founding 100 badge — permanent</li>
           <li>Free Pro for 2 years</li>
-          <li>Direct Discord access with the founder</li>
+          <li>Discord access with the founder</li>
         </ul>
       </div>
       <div class="waitlist-tier">
@@ -361,7 +341,35 @@
       </div>
       <div class="waitlist-field">
         <label for="university">University</label>
-        <input type="text" id="university" name="university" required placeholder="McMaster University" />
+        <select id="university" name="university" required>
+          <option value="" disabled selected>Select your school</option>
+          <option value="McMaster University">McMaster University</option>
+          <option value="University of Toronto">University of Toronto</option>
+          <option value="Queen's University">Queen's University</option>
+          <option value="University of Waterloo">University of Waterloo</option>
+          <option value="Wilfrid Laurier University">Wilfrid Laurier University</option>
+          <option value="Western University">Western University</option>
+          <option value="University of Ottawa">University of Ottawa</option>
+          <option value="Carleton University">Carleton University</option>
+          <option value="University of Guelph">University of Guelph</option>
+          <option value="Toronto Metropolitan University">Toronto Metropolitan University</option>
+          <option value="York University">York University</option>
+          <option value="Lakehead University">Lakehead University</option>
+          <option value="Brock University">Brock University</option>
+          <option value="Trent University">Trent University</option>
+          <option value="University of Windsor">University of Windsor</option>
+          <option value="Nipissing University">Nipissing University</option>
+          <option value="Algoma University">Algoma University</option>
+          <option value="OCAD University">OCAD University</option>
+          <option value="Mohawk College">Mohawk College</option>
+          <option value="George Brown College">George Brown College</option>
+          <option value="Conestoga College">Conestoga College</option>
+          <option value="Fanshawe College">Fanshawe College</option>
+          <option value="Algonquin College">Algonquin College</option>
+          <option value="Fleming College">Fleming College</option>
+          <option value="Durham College">Durham College</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
       <div class="waitlist-field">
         <label for="pronouns">Pronouns <span>(optional)</span></label>
@@ -371,16 +379,14 @@
         <label for="referral">How did you hear about Loot?</label>
         <select id="referral" name="referral" required>
           <option value="" disabled selected>Select one</option>
-          <option value="friend">Friend or classmate</option>
           <option value="instagram">Instagram</option>
+          <option value="tiktok">TikTok</option>
           <option value="reddit">Reddit</option>
-          <option value="discord">Discord</option>
-          <option value="campus">Campus flyer or event</option>
-          <option value="search">Search</option>
+          <option value="friend">Friend</option>
           <option value="other">Other</option>
         </select>
       </div>
-      <button type="submit" class="btn-pill">Join waitlist</button>
+      <button type="submit" class="btn-pill">Get early access</button>
     </form>
     <div class="signup-success" id="waitlistSuccess">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
@@ -447,5 +453,34 @@
 </footer>
 
 <script src="nav.js" defer></script>
+<script>
+(function () {
+  var launch = new Date('2026-09-02T00:00:00-04:00');
+  var daysEl = document.getElementById('cdDays');
+  var hoursEl = document.getElementById('cdHours');
+  var minutesEl = document.getElementById('cdMinutes');
+  var secondsEl = document.getElementById('cdSeconds');
+  if (!daysEl) return;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    var diff = launch - Date.now();
+    if (diff < 0) diff = 0;
+    var totalSeconds = Math.floor(diff / 1000);
+    var days = Math.floor(totalSeconds / 86400);
+    var hours = Math.floor((totalSeconds % 86400) / 3600);
+    var minutes = Math.floor((totalSeconds % 3600) / 60);
+    var seconds = totalSeconds % 60;
+    daysEl.textContent = days;
+    hoursEl.textContent = pad(hours);
+    minutesEl.textContent = pad(minutes);
+    secondsEl.textContent = pad(seconds);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 </body>
 </html>
