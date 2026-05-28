@@ -371,6 +371,10 @@
           <option value="Other">Other</option>
         </select>
       </div>
+      <div class="waitlist-field" id="universityOtherField" hidden>
+        <label for="universityOther">School name</label>
+        <input type="text" id="universityOther" name="university_other" placeholder="Your university or college" />
+      </div>
       <div class="waitlist-field">
         <label for="pronouns">Pronouns <span>(optional)</span></label>
         <input type="text" id="pronouns" name="pronouns" placeholder="she/her" />
@@ -480,6 +484,23 @@
 
   tick();
   setInterval(tick, 1000);
+})();
+
+(function () {
+  var universitySelect = document.getElementById('university');
+  var otherField = document.getElementById('universityOtherField');
+  var otherInput = document.getElementById('universityOther');
+  if (!universitySelect || !otherField || !otherInput) return;
+
+  function syncUniversityOther() {
+    var isOther = universitySelect.value === 'Other';
+    otherField.hidden = !isOther;
+    otherInput.required = isOther;
+    if (!isOther) otherInput.value = '';
+  }
+
+  universitySelect.addEventListener('change', syncUniversityOther);
+  syncUniversityOther();
 })();
 </script>
 </body>

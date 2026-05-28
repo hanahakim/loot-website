@@ -81,8 +81,12 @@ function handleWaitlistForm(formId, successId, errorId) {
     const personalVal = personalEmail ? personalEmail.value.trim().toLowerCase() : '';
     const emailOk = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
     const requiredOk = [...form.querySelectorAll('[required]')].every(el => el.value.trim());
+    const universitySelect = form.querySelector('[name="university"]');
+    const universityOther = form.querySelector('[name="university_other"]');
+    const universityOk = universitySelect && universitySelect.value.trim()
+      && (universitySelect.value !== 'Other' || (universityOther && universityOther.value.trim()));
 
-    if (!requiredOk || !emailOk(uniVal) || !/\.ca$/.test(uniVal) || !emailOk(personalVal)) {
+    if (!requiredOk || !universityOk || !emailOk(uniVal) || !/\.ca$/.test(uniVal) || !emailOk(personalVal)) {
       error && error.classList.add('show');
       return;
     }
