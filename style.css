@@ -923,6 +923,7 @@ footer {
 }
 @media (max-width: 540px) { .waitlist-form-row { grid-template-columns: 1fr; } }
 .waitlist-field { display: flex; flex-direction: column; gap: 6px; }
+.waitlist-field[hidden] { display: none !important; }
 .waitlist-field label {
   font-size: 13px;
   font-weight: 600;
