@@ -8,12 +8,7 @@ const navLinks = document.getElementById('navLinks');
   if (!navInner) return;
   const logo = navInner.querySelector('.logo');
   const waitlist = navInner.querySelector('.nav-links a.btn-pill');
-  if (!logo || !waitlist || navInner.querySelector('.nav-brand')) return;
-
-  const brand = document.createElement('div');
-  brand.className = 'nav-brand';
-  logo.parentNode.insertBefore(brand, logo);
-  brand.appendChild(logo);
+  if (!logo || !waitlist || waitlist.classList.contains('btn-brand')) return;
 
   waitlist.classList.remove('btn-pill');
   waitlist.classList.add('btn-brand');
@@ -25,9 +20,6 @@ const navLinks = document.getElementById('navLinks');
     mark.appendChild(logoSvg.cloneNode(true));
     waitlist.prepend(mark);
   }
-
-  brand.appendChild(waitlist);
-  waitlist.closest('li')?.remove();
 })();
 
 const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 8);
